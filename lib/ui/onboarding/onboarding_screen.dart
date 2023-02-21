@@ -62,7 +62,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               padding: const EdgeInsets.fromLTRB(20, 30, 20, 50),
               child: ElevatedButton(
                 onPressed: () {
-                  _controller.nextPage(duration: const Duration(milliseconds: 300), curve: Curves.bounceIn);
+                  _controller.nextPage(duration: const Duration(milliseconds: 300), curve: Curves.fastOutSlowIn);
                   setState(() {});
                 },
                 child: islast ? const Text('Start') : const Text('Next'),

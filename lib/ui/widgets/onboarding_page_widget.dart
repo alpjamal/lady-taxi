@@ -11,7 +11,7 @@ class OnboardingPage extends StatelessWidget {
     return Column(
       children: [
         Container(
-          height: 400,
+          height: 380,
           padding: const EdgeInsets.all(40),
           decoration: BoxDecoration(
             image: DecorationImage(
@@ -22,7 +22,7 @@ class OnboardingPage extends StatelessWidget {
           child: Image.asset('assets/images/onboarding/onboardingimage$index.png'),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 60),
+          padding: const EdgeInsets.fromLTRB(60, 20, 60, 0),
           child: RichText(
             textAlign: TextAlign.center,
             text: TextSpan(
