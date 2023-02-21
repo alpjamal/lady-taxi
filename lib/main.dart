@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 import './utils/theme.dart';
-import 'ui/onboarding/onboarding_screen.dart';
+// import 'ui/screens/onboarding_screen.dart';
+import 'ui/screens/registry_screen.dart';
 
 void main() => runApp(const MyApp());
 
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: kthemeData,
-      home: const OnboardingScreen(),
+      home: const RegistryScreen(),
     );
   }
 }
