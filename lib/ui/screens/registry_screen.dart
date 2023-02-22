@@ -1,6 +1,10 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:lady_taxi/ui/widgets/registry_pages.dart';
-import 'package:lady_taxi/utils/constants.dart';
+import 'package:otp_text_field/otp_text_field.dart';
+
+import './profile_screen.dart';
+import '/utils/constants.dart';
+import '../widgets/registry_pages.dart';
 
 class RegistryScreen extends StatefulWidget {
   const RegistryScreen({super.key});
@@ -12,23 +16,128 @@ class RegistryScreen extends StatefulWidget {
 class _RegistryScreenState extends State<RegistryScreen> {
   final TextEditingController _textController = TextEditingController();
   final _pageController = PageController();
+  final OtpFieldController _otpController = OtpFieldController();
 
-  String userInput = '+998 ';
+  String userInputNumber = '+998 ';
+  String userOtpInput = '';
   bool buttonDisabled = true;
+  bool onConfirmPage = false;
+
+  Timer? _timer;
+  int _duration = kDuration;
+  String? _time;
+
+  formatTime(int duration) {
+    _time = [Duration(seconds: duration).inMinutes, Duration(seconds: duration).inSeconds]
+        .map((seg) => seg.remainder(60).toString().padLeft(2, '0'))
+        .join(':');
+  }
 
   @override
   void initState() {
     super.initState();
-    _textController.text = userInput;
+    _textController.text = userInputNumber;
+    formatTime(_duration);
+  }
+
+  @override
+  void dispose() {
+    _timer!.cancel();
+    super.dispose();
   }
 
   void _updateUserInput() {
-    _textController.text = userInput;
-    _textController.selection = TextSelection.fromPosition(TextPosition(offset: _textController.text.length));
-    if (userInput.startsWith('+998') && userInput.length == 17) {
+    _textController.text = userInputNumber;
+    _textController.selection = TextSelection.fromPosition(TextPosition(offset: userInputNumber.length));
+    if ((userInputNumber.startsWith('+998 9') ||
+            userInputNumber.startsWith('+998 3') ||
+            userInputNumber.startsWith('+998 7')) &&
+        userInputNumber.length == 17) {
       setState(() => buttonDisabled = false);
     } else if (buttonDisabled == false) {
       setState(() => buttonDisabled = true);
+    }
+  }
+
+  _goToConfirm() {
+    setState(() => buttonDisabled = true);
+    _pageController.nextPage(duration: const Duration(milliseconds: 300), curve: Curves.fastOutSlowIn);
+    startTimer();
+    onConfirmPage = true;
+  }
+
+  void startTimer() {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (_duration == 1 && userOtpInput.length == 4) {
+        _duration--;
+        setState(() => buttonDisabled = false);
+        formatTime(_duration);
+      } else if (_duration == 0) {
+        timer.cancel();
+      } else {
+        if (userOtpInput.length == 4) {
+          buttonDisabled = false;
+        } else {
+          buttonDisabled = true;
+        }
+        setState(() => _duration--);
+        formatTime(_duration);
+      }
+    });
+  }
+
+  _confirm() {
+    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => ProfileScreen(userInputNumber)));
+  }
+
+  _repeat() {
+    _timer!.cancel();
+    _duration = kDuration;
+    formatTime(_duration);
+    setState(() => buttonDisabled = true);
+    startTimer();
+  }
+
+  _inkWellOnTap(int index) {
+    if (onConfirmPage) {
+      _inkWellOnConfirmPage(index);
+    } else {
+      _inkWellOnNumPage(index);
+    }
+  }
+
+  _inkWellOnNumPage(int index) {
+    if (numpadItems[index] == '.' && userInputNumber.length > 5) {
+      var list = userInputNumber.split('');
+      list.removeLast();
+      userInputNumber = list.join();
+      if (userInputNumber.length > 7) {
+        userInputNumber = userInputNumber.trimRight();
+      }
+      _updateUserInput();
+    } else if (numpadItems[index] != '*' && numpadItems[index] != '.' && userInputNumber.length < 17) {
+      if (userInputNumber.length == 7 || userInputNumber.length == 11 || userInputNumber.length == 14) {
+        userInputNumber += ' ';
+      }
+      userInputNumber += numpadItems[index];
+      _updateUserInput();
+    }
+  }
+
+  _inkWellOnConfirmPage(int index) {
+    int editIndex = userOtpInput.length;
+    if (numpadItems[index] == '.') {
+      editIndex = userOtpInput.length - 1;
+      if (editIndex >= 0) {
+        _otpController.setValue('', editIndex);
+        userOtpInput = userOtpInput.substring(0, userOtpInput.length - 1);
+      }
+    } else if (numpadItems[index] != '*' && numpadItems[index] != '.') {
+      editIndex = userOtpInput.length;
+      if (userOtpInput.length < 4) {
+        _otpController.setValue(numpadItems[index], editIndex);
+        userOtpInput += numpadItems[index];
+      }
     }
   }
 
@@ -43,28 +152,16 @@ class _RegistryScreenState extends State<RegistryScreen> {
               child: Column(
                 children: [
                   const SizedBox(height: 15),
-                  SizedBox(
-                    height: 300,
+                  Expanded(
                     child: PageView(
                       controller: _pageController,
                       allowImplicitScrolling: false,
                       physics: const NeverScrollableScrollPhysics(),
                       children: [
-                        RegistryNumberPage(_textController),
+                        RegistryNumberPage(_textController, buttonDisabled, _goToConfirm),
+                        RegistryConfirmPage(userInputNumber, _time!, buttonDisabled, _confirm, _repeat, _otpController),
                       ],
                     ),
-                  ),
-                  const Spacer(),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-                    child: ElevatedButton(
-                        onPressed: buttonDisabled
-                            ? null
-                            : () {
-                                _pageController.nextPage(
-                                    duration: const Duration(milliseconds: 300), curve: Curves.fastOutSlowIn);
-                              },
-                        child: const Text('Continue')),
                   ),
                 ],
               ),
@@ -87,27 +184,12 @@ class _RegistryScreenState extends State<RegistryScreen> {
                 padding: const EdgeInsets.all(0),
                 itemBuilder: (ctx, index) {
                   return InkWell(
-                    onTap: () {
-                      if (numpadItems[index] == '.' && userInput.length > 5) {
-                        var list = userInput.split('');
-                        list.removeLast();
-                        userInput = list.join();
-                        if (userInput.length > 7) {
-                          userInput = userInput.trimRight();
-                        }
-                        _updateUserInput();
-                      } else if (numpadItems[index] != '*' && numpadItems[index] != '.' && userInput.length < 17) {
-                        userInput += numpadItems[index];
-                        if (userInput.length == 7 || userInput.length == 11 || userInput.length == 14) {
-                          userInput += ' ';
-                        }
-                        _updateUserInput();
-                      }
-                    },
+                    onTap: () => _inkWellOnTap(index),
                     child: Center(
                       child: numpadItems[index] == '.'
                           ? const Icon(Icons.backspace, size: 20)
-                          : Text(numpadItems[index], style: kDefaultTextStyle.copyWith(fontSize: 22)),
+                          : Text(numpadItems[index],
+                              style: kDefaultTextStyle.copyWith(fontSize: 22, fontWeight: FontWeight.bold)),
                     ),
                   );
                 },

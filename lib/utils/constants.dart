@@ -11,4 +11,6 @@ const kInputBorderColor = Color(0xFFCCCCCC);
 
 const List<String> numpadItems = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '*', '0', '.'];
 
-const kDefaultTextStyle = TextStyle(color: Colors.black, fontSize: 16);
+const TextStyle kDefaultTextStyle = TextStyle(color: Colors.black, fontSize: 16);
+
+const int kDuration = 119;
