@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import '../../utils/constants.dart';
 
-List<List<InlineSpan>> infoSpanList = [
+const infoSpanList = [
   [
-    TextSpan(text: 'Ishonchli ', style: kOnboardingInfoTextStyle.copyWith(color: kPrimaryColor)),
-    const TextSpan(text: 'haydovchilar xizmatidan foydalaning!'),
+    TextSpan(text: 'Ishonchli ', style: LadyTaxiTextStyles.onboardingInfoRed),
+    TextSpan(text: 'haydovchilar xizmatidan foydalaning!'),
   ],
   [
-    const TextSpan(text: 'Bizda barcha haydovchilar '),
-    TextSpan(text: 'ayollardan ', style: kOnboardingInfoTextStyle.copyWith(color: kPrimaryColor)),
-    const TextSpan(text: 'iborat'),
+    TextSpan(text: 'Bizda barcha haydovchilar '),
+    TextSpan(text: 'ayollardan ', style: LadyTaxiTextStyles.onboardingInfoRed),
+    TextSpan(text: 'iborat'),
   ],
   [
-    const TextSpan(text: 'Ayollar va bolalar uchun  '),
-    TextSpan(text: 'xavfsiz  ', style: kOnboardingInfoTextStyle.copyWith(color: kPrimaryColor)),
-    const TextSpan(text: 'taksi xizmati'),
+    TextSpan(text: 'Ayollar va bolalar uchun  '),
+    TextSpan(text: 'xavfsiz  ', style: LadyTaxiTextStyles.onboardingInfoRed),
+    TextSpan(text: 'taksi xizmati'),
   ],
 ];

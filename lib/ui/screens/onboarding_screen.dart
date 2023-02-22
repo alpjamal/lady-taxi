@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import 'registry_screen.dart';
+import './registry_screen.dart';
 import '../widgets/onboarding_page_widget.dart';
 import '/../utils/constants.dart';
 
@@ -21,7 +21,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     if (isLast) {
       Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => const RegistryScreen()));
     } else {
-      _pageController.nextPage(duration: const Duration(milliseconds: 300), curve: Curves.fastOutSlowIn);
+      _pageController.nextPage(duration: LadyTaxiDurations.pageView, curve: Curves.fastOutSlowIn);
     }
   }
 
@@ -37,7 +37,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               children: [
                 TextButton(
                   onPressed: () => setState(() => isLast = true),
-                  child: Text('Skip', style: kDefaultTextStyle.copyWith(color: kPrimaryColor)),
+                  child: const Text('Skip', style: LadyTaxiTextStyles.defaultStyleRed),
                 ),
               ],
             ),
@@ -61,8 +61,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               controller: _pageController,
               count: 3,
               effect: const ExpandingDotsEffect(
-                activeDotColor: kPrimaryColor,
-                dotColor: Color(0xFFFFB7D4),
+                activeDotColor: LadyTaxiColors.primaryColor,
+                dotColor: LadyTaxiColors.dot,
                 dotHeight: 8,
                 dotWidth: 8,
               ),

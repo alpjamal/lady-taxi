@@ -17,13 +17,13 @@ class RegistryNumberPage extends StatelessWidget {
         Text(
           "Ro'yxatdan o'tish uchun\n telefon raqamingizni kiriting!",
           textAlign: TextAlign.center,
-          style: kDefaultTextStyle.copyWith(height: 1.8, fontFamily: 'Poppins'),
+          style: LadyTaxiTextStyles.defaultStyle.copyWith(height: 1.8, fontFamily: 'Poppins'),
         ),
         const SizedBox(height: 60),
         Row(children: [
           Padding(
             padding: const EdgeInsets.fromLTRB(35, 0, 0, 5),
-            child: Text('Telefon raqam', style: kDefaultTextStyle.copyWith(fontSize: 12)),
+            child: Text('Telefon raqam', style: LadyTaxiTextStyles.defaultStyle.copyWith(fontSize: 12)),
           ),
         ]),
         Padding(
@@ -31,7 +31,7 @@ class RegistryNumberPage extends StatelessWidget {
           child: TextField(
             keyboardType: TextInputType.none,
             controller: textEditingController,
-            style: kDefaultTextStyle.copyWith(fontSize: 18, fontFamily: 'Inter'),
+            style: LadyTaxiTextStyles.defaultStyle.copyWith(fontSize: 18, fontFamily: 'Inter'),
           ),
         ),
         const Spacer(),
@@ -72,19 +72,13 @@ class RegistryConfirmPage extends StatelessWidget {
         RichText(
           textAlign: TextAlign.center,
           text: TextSpan(
-            style: kDefaultTextStyle.copyWith(height: 1.6, fontFamily: 'Poppins'),
+            style: LadyTaxiTextStyles.defaultStyle.copyWith(height: 1.6, fontFamily: 'Poppins'),
             children: [
               const TextSpan(text: 'Tasdiqlash kodi '),
-              TextSpan(
-                text: userNumber,
-                style: kDefaultTextStyle.copyWith(color: kPrimaryColor, fontWeight: FontWeight.bold),
-              ),
+              TextSpan(text: userNumber, style: LadyTaxiTextStyles.defaultStyleRedBold),
               const TextSpan(text: '\nraqamiga yuborildi.'),
               const TextSpan(text: '\nQabul qilish vaqti:\n'),
-              TextSpan(
-                text: time,
-                style: kDefaultTextStyle.copyWith(color: kPrimaryColor, fontWeight: FontWeight.bold),
-              ),
+              TextSpan(text: time, style: LadyTaxiTextStyles.defaultStyleRedBold),
             ],
           ),
         ),
@@ -103,17 +97,9 @@ class RegistryConfirmPage extends StatelessWidget {
         ),
         TextButton(
           onPressed: repeat,
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
-            child: Text(
-              'Kod qayta yurborilsin',
-              style: kDefaultTextStyle.copyWith(
-                fontSize: 13,
-                color: Colors.blue,
-                fontFamily: 'Poppins',
-                decoration: TextDecoration.underline,
-              ),
-            ),
+          child: const Padding(
+            padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+            child: Text('Kod qayta yurborilsin', style: LadyTaxiTextStyles.repeatBtn),
           ),
         ),
         const Spacer(),
@@ -128,29 +114,3 @@ class RegistryConfirmPage extends StatelessWidget {
     );
   }
 }
-
-// class NewWidget extends StatelessWidget {
-//   const NewWidget({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Padding(
-//       padding: const EdgeInsets.symmetric(horizontal: 8),
-//       child: SizedBox(
-//         width: (MediaQuery.of(context).size.width - 24 - 4 * 16) / 4,
-//         child: TextFormField(
-//           validator: (value) {
-//             if (value!.isEmpty) {
-//               return 'erroooooooor';
-//             }
-//             return null;
-//           },
-//           textAlign: TextAlign.center,
-//           keyboardType: TextInputType.none,
-//           style: kDefaultTextStyle.copyWith(fontSize: 21, fontFamily: 'Inter', fontWeight: FontWeight.bold),
-//           decoration: const InputDecoration(contentPadding: EdgeInsets.all(13)),
-//         ),
-//       ),
-//     );
-//   }
-// }

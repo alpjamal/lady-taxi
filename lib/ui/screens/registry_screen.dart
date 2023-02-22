@@ -24,7 +24,7 @@ class _RegistryScreenState extends State<RegistryScreen> {
   bool onConfirmPage = false;
 
   Timer? _timer;
-  int _duration = kDuration;
+  int _duration = LadyTaxiVars.duration;
   String? _time;
 
   formatTime(int duration) {
@@ -61,7 +61,7 @@ class _RegistryScreenState extends State<RegistryScreen> {
 
   _goToConfirm() {
     setState(() => buttonDisabled = true);
-    _pageController.nextPage(duration: const Duration(milliseconds: 300), curve: Curves.fastOutSlowIn);
+    _pageController.nextPage(duration: LadyTaxiDurations.pageView, curve: Curves.fastOutSlowIn);
     startTimer();
     onConfirmPage = true;
   }
@@ -92,7 +92,7 @@ class _RegistryScreenState extends State<RegistryScreen> {
 
   _repeat() {
     _timer!.cancel();
-    _duration = kDuration;
+    _duration = LadyTaxiVars.duration;
     formatTime(_duration);
     setState(() => buttonDisabled = true);
     startTimer();
@@ -107,7 +107,7 @@ class _RegistryScreenState extends State<RegistryScreen> {
   }
 
   _inkWellOnNumPage(int index) {
-    if (numpadItems[index] == '.' && userInputNumber.length > 5) {
+    if (LadyTaxiVars.nums[index] == '.' && userInputNumber.length > 5) {
       var list = userInputNumber.split('');
       list.removeLast();
       userInputNumber = list.join();
@@ -115,28 +115,28 @@ class _RegistryScreenState extends State<RegistryScreen> {
         userInputNumber = userInputNumber.trimRight();
       }
       _updateUserInput();
-    } else if (numpadItems[index] != '*' && numpadItems[index] != '.' && userInputNumber.length < 17) {
+    } else if (LadyTaxiVars.nums[index] != '*' && LadyTaxiVars.nums[index] != '.' && userInputNumber.length < 17) {
       if (userInputNumber.length == 7 || userInputNumber.length == 11 || userInputNumber.length == 14) {
         userInputNumber += ' ';
       }
-      userInputNumber += numpadItems[index];
+      userInputNumber += LadyTaxiVars.nums[index];
       _updateUserInput();
     }
   }
 
   _inkWellOnConfirmPage(int index) {
     int editIndex = userOtpInput.length;
-    if (numpadItems[index] == '.') {
+    if (LadyTaxiVars.nums[index] == '.') {
       editIndex = userOtpInput.length - 1;
       if (editIndex >= 0) {
         _otpController.setValue('', editIndex);
         userOtpInput = userOtpInput.substring(0, userOtpInput.length - 1);
       }
-    } else if (numpadItems[index] != '*' && numpadItems[index] != '.') {
+    } else if (LadyTaxiVars.nums[index] != '*' && LadyTaxiVars.nums[index] != '.') {
       editIndex = userOtpInput.length;
       if (userOtpInput.length < 4) {
-        _otpController.setValue(numpadItems[index], editIndex);
-        userOtpInput += numpadItems[index];
+        _otpController.setValue(LadyTaxiVars.nums[index], editIndex);
+        userOtpInput += LadyTaxiVars.nums[index];
       }
     }
   }
@@ -169,8 +169,8 @@ class _RegistryScreenState extends State<RegistryScreen> {
             Container(
               height: 264,
               decoration: const BoxDecoration(
-                color: kInputFillColor,
-                borderRadius: BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30)),
+                color: LadyTaxiColors.inputFill,
+                borderRadius: BorderRadius.only(topLeft: LadyTaxiRadiuses.numpad, topRight: LadyTaxiRadiuses.numpad),
               ),
               padding: const EdgeInsets.all(0),
               margin: const EdgeInsets.all(0),
@@ -186,10 +186,9 @@ class _RegistryScreenState extends State<RegistryScreen> {
                   return InkWell(
                     onTap: () => _inkWellOnTap(index),
                     child: Center(
-                      child: numpadItems[index] == '.'
+                      child: LadyTaxiVars.nums[index] == '.'
                           ? const Icon(Icons.backspace, size: 20)
-                          : Text(numpadItems[index],
-                              style: kDefaultTextStyle.copyWith(fontSize: 22, fontWeight: FontWeight.bold)),
+                          : Text(LadyTaxiVars.nums[index], style: LadyTaxiTextStyles.numpad),
                     ),
                   );
                 },

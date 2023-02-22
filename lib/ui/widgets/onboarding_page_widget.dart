@@ -25,10 +25,7 @@ class OnboardingPage extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(60, 20, 60, 0),
           child: RichText(
             textAlign: TextAlign.center,
-            text: TextSpan(
-              style: kOnboardingInfoTextStyle,
-              children: infoSpanList[index - 1],
-            ),
+            text: TextSpan(style: LadyTaxiTextStyles.onboardingInfo, children: infoSpanList[index - 1]),
           ),
         ),
       ],
