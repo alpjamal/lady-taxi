@@ -30,6 +30,7 @@ flutter:
 
   assets:
     - assets/images/onboarding/
+    - assets/icons/profile/
     - assets/locales/en.json
     - assets/locales/ru.json
     - assets/locales/uz.json

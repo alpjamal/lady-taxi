@@ -1,8 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_locales/flutter_locales.dart';
 import 'package:otp_text_field/otp_text_field.dart';
 
-import './profile_screen.dart';
+import 'create_profile_screen.dart';
 import '/utils/constants.dart';
 import '../widgets/registry_pages.dart';
 
@@ -91,6 +92,8 @@ class _RegistryScreenState extends State<RegistryScreen> {
   }
 
   _repeat() {
+    userOtpInput = '';
+    _otpController.clear();
     _timer!.cancel();
     _duration = LadyTaxiVars.duration;
     formatTime(_duration);
@@ -129,12 +132,14 @@ class _RegistryScreenState extends State<RegistryScreen> {
     if (LadyTaxiVars.nums[index] == '.') {
       editIndex = userOtpInput.length - 1;
       if (editIndex >= 0) {
+        FocusScope.of(context).previousFocus();
         _otpController.setValue('', editIndex);
         userOtpInput = userOtpInput.substring(0, userOtpInput.length - 1);
       }
     } else if (LadyTaxiVars.nums[index] != '*' && LadyTaxiVars.nums[index] != '.') {
       editIndex = userOtpInput.length;
       if (userOtpInput.length < 4) {
+        FocusScope.of(context).nextFocus();
         _otpController.setValue(LadyTaxiVars.nums[index], editIndex);
         userOtpInput += LadyTaxiVars.nums[index];
       }
@@ -145,7 +150,7 @@ class _RegistryScreenState extends State<RegistryScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(title: const Text("Ro'yxatdan o'tish")),
+        appBar: AppBar(title: const LocaleText('signup')),
         body: Column(
           children: [
             Expanded(
@@ -161,6 +166,7 @@ class _RegistryScreenState extends State<RegistryScreen> {
                         RegistryNumberPage(_textController, buttonDisabled, _goToConfirm),
                         RegistryConfirmPage(userInputNumber, _time!, buttonDisabled, _confirm, _repeat, _otpController),
                       ],
+                      onPageChanged: (value) => value == 1 ? _otpController.setFocus(0) : null,
                     ),
                   ),
                 ],

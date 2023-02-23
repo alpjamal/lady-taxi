@@ -32,7 +32,7 @@ class LadyTaxiTheme {
       fillColor: LadyTaxiColors.inputFill,
       contentPadding: EdgeInsets.fromLTRB(20, 10, 0, 10),
       enabledBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: LadyTaxiColors.inputBorder),
+        borderSide: BorderSide(color: Colors.transparent),
         borderRadius: BorderRadius.all(LadyTaxiRadiuses.input),
       ),
       focusedBorder: OutlineInputBorder(

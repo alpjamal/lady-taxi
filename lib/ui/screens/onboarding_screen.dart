@@ -20,7 +20,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   _btnHandle() {
     if (isLast) {
-      Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => const RegistryScreen()));
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) => const RegistryScreen()));
     } else {
       _pageController.nextPage(duration: LadyTaxiDurations.pageView, curve: Curves.fastOutSlowIn);
     }
@@ -37,7 +37,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 TextButton(
-                  onPressed: () => setState(() => isLast = true),
+                  onPressed: () {
+                    isLast = true;
+                    _btnHandle();
+                  },
                   child: const LocaleText("skip", style: LadyTaxiTextStyles.defaultStyleRed),
                 ),
               ],

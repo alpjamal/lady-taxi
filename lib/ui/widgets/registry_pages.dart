@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_locales/flutter_locales.dart';
 import 'package:otp_text_field/otp_text_field.dart';
 import 'package:otp_text_field/style.dart';
 
@@ -14,8 +15,8 @@ class RegistryNumberPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(
-          "Ro'yxatdan o'tish uchun\n telefon raqamingizni kiriting!",
+        LocaleText(
+          'enteranumber',
           textAlign: TextAlign.center,
           style: LadyTaxiTextStyles.defaultStyle.copyWith(height: 1.8, fontFamily: 'Poppins'),
         ),
@@ -23,7 +24,7 @@ class RegistryNumberPage extends StatelessWidget {
         Row(children: [
           Padding(
             padding: const EdgeInsets.fromLTRB(35, 0, 0, 5),
-            child: Text('Telefon raqam', style: LadyTaxiTextStyles.defaultStyle.copyWith(fontSize: 12)),
+            child: LocaleText('phoneinputlabel', style: LadyTaxiTextStyles.defaultStyle.copyWith(fontSize: 12)),
           ),
         ]),
         Padding(
@@ -39,7 +40,7 @@ class RegistryNumberPage extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
           child: ElevatedButton(
             onPressed: buttonDisabled ? null : myFunc,
-            child: const Text('Continue'),
+            child: const LocaleText('continue'),
           ),
         ),
       ],
@@ -74,10 +75,11 @@ class RegistryConfirmPage extends StatelessWidget {
           text: TextSpan(
             style: LadyTaxiTextStyles.defaultStyle.copyWith(height: 1.6, fontFamily: 'Poppins'),
             children: [
-              const TextSpan(text: 'Tasdiqlash kodi '),
-              TextSpan(text: userNumber, style: LadyTaxiTextStyles.defaultStyleRedBold),
-              const TextSpan(text: '\nraqamiga yuborildi.'),
-              const TextSpan(text: '\nQabul qilish vaqti:\n'),
+              TextSpan(text: context.localeString('registryinfo1')),
+              if (Locales.lang == 'uz') TextSpan(text: userNumber, style: LadyTaxiTextStyles.defaultStyleRedBold),
+              TextSpan(text: context.localeString('registryinfo2')),
+              if (Locales.lang != 'uz') TextSpan(text: userNumber, style: LadyTaxiTextStyles.defaultStyleRedBold),
+              TextSpan(text: context.localeString('registryinfo3')),
               TextSpan(text: time, style: LadyTaxiTextStyles.defaultStyleRedBold),
             ],
           ),
@@ -99,7 +101,7 @@ class RegistryConfirmPage extends StatelessWidget {
           onPressed: repeat,
           child: const Padding(
             padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
-            child: Text('Kod qayta yurborilsin', style: LadyTaxiTextStyles.repeatBtn),
+            child: LocaleText('registryrepeat', style: LadyTaxiTextStyles.repeatBtn),
           ),
         ),
         const Spacer(),
@@ -107,7 +109,7 @@ class RegistryConfirmPage extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
           child: ElevatedButton(
             onPressed: buttonDisabled ? null : myFunc,
-            child: const Text('Continue'),
+            child: const LocaleText('continue'),
           ),
         ),
       ],

@@ -4,5 +4,17 @@
     "info2": "Ayollar va bolalar uchun xavfsiz taksi xizmati",
     "skip": "O'tkazib yuroborish",
     "start": "Boshlash",
-    "next": "Keyingisi"
+    "next": "Keyingisi",
+    "continue": "Davom etish",
+    "create": "Profil Yaratish",
+    "name": "F.I.SH.",
+    "birthdate": "Tug'ilgan sana",
+    "number": "Telefon raqam",
+    "signup": "Ro'yxatdan o'tish",
+    "enteranumber": "Ro'yxatdan o'tish uchun\ntelefon raqamingizni kiriting!",
+    "phoneinputlabel": "Telefon raqam",
+    "registryinfo1": "Tasdiqlash kodi ",
+    "registryinfo2": "\nraqamiga yuborildi.",
+    "registryinfo3": "\nQabul qilish vaqti:\n",
+    "registryrepeat": "Kod qayta yurborilsin"
 }

@@ -3,6 +3,18 @@
     "info1": "All our drivers are women.",
     "info2": "Safe taxi service for women and children.",
     "skip": "Skip",
-    "start" : "Start",
-    "next": "Next"
+    "start": "Start",
+    "next": "Next",
+    "continue": "Continue",
+    "create": "Create Profile",
+    "name": "Full name",
+    "birthdate": "Date of birth",
+    "number": "Phone number",
+    "signup": "Sign Up",
+    "enteranumber": "Enter your phone\nnumber to register!",
+    "phoneinputlabel": "Phone number",
+    "registryinfo1": "Confirmation code ",
+    "registryinfo2": "sent to the number  \n",
+    "registryinfo3": "\nReception time:\n",
+    "registryrepeat": "Resend the confirmation code"
 }
