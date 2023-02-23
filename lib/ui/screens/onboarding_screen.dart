@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_locales/flutter_locales.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import './registry_screen.dart';
@@ -37,7 +38,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               children: [
                 TextButton(
                   onPressed: () => setState(() => isLast = true),
-                  child: const Text('Skip', style: LadyTaxiTextStyles.defaultStyleRed),
+                  child: const LocaleText("skip", style: LadyTaxiTextStyles.defaultStyleRed),
                 ),
               ],
             ),
@@ -46,7 +47,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               child: PageView.builder(
                 controller: _pageController,
                 itemCount: 3,
-                itemBuilder: (ctx, i) => OnboardingPage(index: i + 1),
+                itemBuilder: (ctx, index) => OnboardingPage(index),
                 onPageChanged: (value) {
                   if (value == 2) {
                     setState(() => isLast = true);
@@ -71,7 +72,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               padding: const EdgeInsets.fromLTRB(20, 30, 20, 50),
               child: ElevatedButton(
                 onPressed: _btnHandle,
-                child: Text(isLast ? 'Start' : 'Next'),
+                child: LocaleText(isLast ? 'start' : 'next'),
               ),
             ),
           ],

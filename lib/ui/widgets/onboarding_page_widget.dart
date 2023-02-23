@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_locales/flutter_locales.dart';
+
 import '../../utils/constants.dart';
-import '../../utils/variables.dart';
 
 class OnboardingPage extends StatelessWidget {
-  const OnboardingPage({required this.index, super.key});
+  const OnboardingPage(this.index, {super.key});
   final int index;
 
   @override
@@ -23,10 +24,7 @@ class OnboardingPage extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.fromLTRB(60, 20, 60, 0),
-          child: RichText(
-            textAlign: TextAlign.center,
-            text: TextSpan(style: LadyTaxiTextStyles.onboardingInfo, children: infoSpanList[index - 1]),
-          ),
+          child: LocaleText('info$index', textAlign: TextAlign.center, style: LadyTaxiTextStyles.onboardingInfo),
         ),
       ],
     );
