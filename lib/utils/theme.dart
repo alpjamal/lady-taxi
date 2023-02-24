@@ -9,7 +9,7 @@ class LadyTaxiTheme {
       backgroundColor: Colors.transparent,
       elevation: 0,
       foregroundColor: Colors.black,
-      titleTextStyle: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w600),
+      titleTextStyle: LadyTaxiTextStyles.appbarStyle,
     ),
     textButtonTheme: const TextButtonThemeData(
       style: ButtonStyle(
@@ -39,6 +39,9 @@ class LadyTaxiTheme {
         borderSide: BorderSide(color: LadyTaxiColors.primaryWithOpacity30),
         borderRadius: BorderRadius.all(LadyTaxiRadiuses.input),
       ),
+    ),
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
+      backgroundColor: Colors.white,
     ),
   );
 }

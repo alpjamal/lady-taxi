@@ -16,5 +16,8 @@
     "registryinfo1": "Confirmation code ",
     "registryinfo2": "sent to the number  \n",
     "registryinfo3": "\nReception time:\n",
-    "registryrepeat": "Resend the confirmation code"
+    "registryrepeat": "Resend the confirmation code",
+    "congratulations": "Congratulations!",
+    "you_have_successfully_registered": "You have successfully registered.",
+    "my_shipping_adress": "My shipping address"
 }

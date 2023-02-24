@@ -30,7 +30,7 @@ class ProfileScreen extends StatelessWidget {
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.of(context)
-                            .pushReplacement(MaterialPageRoute(builder: (context) => const HomePage()));
+                            .pushReplacement(MaterialPageRoute(builder: (context) =>  const HomeScreen()));
                       },
                       child: const LocaleText('continue'),
                     ),

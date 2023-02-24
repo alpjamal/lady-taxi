@@ -16,5 +16,8 @@
     "registryinfo1": "Код подтверждения ",
     "registryinfo2": "отправлено на номер  \n",
     "registryinfo3": "\nВремя приема:\n",
-    "registryrepeat": "Повторно отправить код подтверждения"
+    "registryrepeat": "Повторно отправить код подтверждения",
+    "congratulations": "Поздравления!",
+    "you_have_successfully_registered": "Вы успешно зарегистрировались.",
+    "my_shipping_adress": "Мой адрес доставки"
 }

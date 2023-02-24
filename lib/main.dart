@@ -1,5 +1,9 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
 import 'package:flutter_locales/flutter_locales.dart';
+import 'package:lady_taxi/ui/screens/create_profile_screen.dart';
+import 'package:lady_taxi/ui/screens/home_screen.dart';
 
 import './utils/theme.dart';
 import 'ui/screens/onboarding_screen.dart';
@@ -24,7 +28,9 @@ class MyApp extends StatelessWidget {
         locale: locale,
         debugShowCheckedModeBanner: false,
         theme: LadyTaxiTheme().themeData,
-        home: const OnboardingScreen(),
+        // home: const OnboardingScreen(),
+        // home:  const ProfileScreen(''),
+        home:  const HomeScreen(),
       ),
     );
   }

@@ -25,7 +25,7 @@ class _RegistryScreenState extends State<RegistryScreen> {
   bool onConfirmPage = false;
 
   Timer? _timer;
-  int _duration = LadyTaxiVars.duration;
+  int _duration = LadyTaxiDurations.message.inMinutes;
   String? _time;
 
   formatTime(int duration) {
@@ -95,7 +95,7 @@ class _RegistryScreenState extends State<RegistryScreen> {
     userOtpInput = '';
     _otpController.clear();
     _timer!.cancel();
-    _duration = LadyTaxiVars.duration;
+    _duration = LadyTaxiDurations.message.inMinutes;
     formatTime(_duration);
     setState(() => buttonDisabled = true);
     startTimer();

@@ -30,7 +30,12 @@ flutter:
 
   assets:
     - assets/images/onboarding/
+    - assets/images/cook.jpg
     - assets/icons/profile/
+    - assets/icons/congratulations.png
+    - assets/icons/point.png
+    - assets/icons/menu.png
+    - assets/icons/getlocation.png
     - assets/locales/en.json
     - assets/locales/ru.json
     - assets/locales/uz.json

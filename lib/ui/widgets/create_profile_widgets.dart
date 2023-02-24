@@ -12,20 +12,20 @@ class ProfilePhoto extends StatelessWidget {
       child: Stack(
         children: [
           ClipRRect(
-            borderRadius: BorderRadius.circular(50),
+            borderRadius: const BorderRadius.all(LadyTaxiRadiuses.profilePhoto),
             child: Container(
               width: 100,
               height: 100,
               decoration: const BoxDecoration(color: LadyTaxiColors.inputFill, shape: BoxShape.circle),
               child: Image.asset(
-                'assets/icons/profile/human.png',
+                LadyTaxiIconsName.avatar,
                 alignment: Alignment.bottomCenter,
                 color: LadyTaxiColors.inputBorder,
                 cacheHeight: 75,
               ),
             ),
           ),
-          Positioned(bottom: 3, right: 0, child: Image.asset('assets/icons/profile/write.png', cacheHeight: 24)),
+          Positioned(bottom: 3, right: 0, child: Image.asset(LadyTaxiIconsName.write, cacheHeight: 24)),
         ],
       ),
     );
