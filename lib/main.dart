@@ -28,9 +28,9 @@ class MyApp extends StatelessWidget {
         locale: locale,
         debugShowCheckedModeBanner: false,
         theme: LadyTaxiTheme().themeData,
-        // home: const OnboardingScreen(),
+        home: const OnboardingScreen(),
         // home:  const ProfileScreen(''),
-        home:  const HomeScreen(),
+        // home:  const HomeScreen(),
       ),
     );
   }
