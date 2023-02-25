@@ -7,6 +7,7 @@ class LadyTaxiColors {
   static const inputFill = Color(0xFFF0F0F0);
   static const inputBorder = Color(0xFFCCCCCC);
   static const dot = Color(0xFFFFB7D4);
+  static const gray = Colors.grey;
 }
 
 class LadyTaxiTextStyles {
@@ -24,6 +25,7 @@ class LadyTaxiTextStyles {
     decoration: TextDecoration.underline,
   );
   static const address = TextStyle(fontSize: 20, fontFamily: 'Poppins', fontWeight: FontWeight.bold);
+  static const hintText = TextStyle(fontSize: 24, color: LadyTaxiColors.gray);
 }
 
 class LadyTaxiRadiuses {
@@ -39,6 +41,8 @@ class LadyTaxiDurations {
   static const message = Duration(seconds: 119);
   static const pageView = Duration(milliseconds: 300);
   static const alert = Duration(seconds: 5);
+  static const panelClose = Duration(milliseconds: 100);
+  static const panelOpen = Duration(milliseconds: 400);
 }
 
 class LadyTaxiIconsName {
@@ -52,4 +56,9 @@ class LadyTaxiIconsName {
 
 class LadyTaxiVars {
   static const nums = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '*', '0', '.'];
+}
+
+class LadyTaxiPanelHeight {
+  static const little = 160.0;
+  static const large = 400.0;
 }
