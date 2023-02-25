@@ -15,15 +15,12 @@ class OnboardingScreen extends StatefulWidget {
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
   final _pageController = PageController();
-
   bool isLast = false;
 
   _btnHandle() {
-    if (isLast) {
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) => const RegistryScreen()));
-    } else {
-      _pageController.nextPage(duration: LadyTaxiDurations.pageView, curve: Curves.fastOutSlowIn);
-    }
+    isLast
+        ? Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) => const RegistryScreen()))
+        : _pageController.nextPage(duration: LadyTaxiDurations.pageView, curve: Curves.fastOutSlowIn);
   }
 
   @override

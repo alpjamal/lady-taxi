@@ -15,10 +15,7 @@ class OnboardingPage extends StatelessWidget {
           height: 380,
           padding: const EdgeInsets.all(40),
           decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/images/onboarding/vector$index.png'),
-              fit: BoxFit.cover,
-            ),
+            image: DecorationImage(image: AssetImage('assets/images/onboarding/vector$index.png')),
           ),
           child: Image.asset('assets/images/onboarding/onboardingimage$index.png'),
         ),
