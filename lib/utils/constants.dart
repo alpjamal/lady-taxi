@@ -14,7 +14,8 @@ class LadyTaxiTextStyles {
   static const appbarStyle = TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w600);
   static const defaultStyle = TextStyle(color: Colors.black, fontSize: 16);
   static const defaultStyleRed = TextStyle(color: LadyTaxiColors.primaryColor, fontSize: 16);
-  static const defaultStyleRedBold = TextStyle(color: LadyTaxiColors.primaryColor, fontSize: 16);
+  static const defaultStyleRedBold =
+      TextStyle(color: LadyTaxiColors.primaryColor, fontSize: 16, fontWeight: FontWeight.bold);
   static const onboardingInfo = TextStyle(fontSize: 20, color: Colors.black);
   static const onboardingInfoRed = TextStyle(fontSize: 20, color: LadyTaxiColors.primaryColor);
   static const numpad = TextStyle(fontSize: 22, fontWeight: FontWeight.bold);
@@ -26,6 +27,9 @@ class LadyTaxiTextStyles {
   );
   static const address = TextStyle(fontSize: 20, fontFamily: 'Poppins', fontWeight: FontWeight.bold);
   static const hintText = TextStyle(fontSize: 24, color: LadyTaxiColors.gray);
+  static const userName =
+      TextStyle(fontSize: 20, fontFamily: 'Poppins', color: Colors.white, fontWeight: FontWeight.bold);
+  static const userContact = TextStyle(fontSize: 14, fontFamily: 'Poppins', color: Colors.white);
 }
 
 class LadyTaxiRadiuses {
@@ -41,6 +45,7 @@ class LadyTaxiDurations {
   static const message = Duration(seconds: 119);
   static const pageView = Duration(milliseconds: 300);
   static const alert = Duration(seconds: 5);
+  static const alertBegin = Duration(milliseconds: 50);
   static const panelClose = Duration(milliseconds: 100);
   static const panelOpen = Duration(milliseconds: 400);
 }
@@ -50,8 +55,13 @@ class LadyTaxiIconsName {
   static const congratulation = 'assets/icons/congratulations.png';
   static const point = 'assets/icons/point.png';
   static const menu = 'assets/icons/menu.png';
-  static const write = 'assets/icons/profile/write.png';
+  static const writeRed = 'assets/icons/profile/write.png';
+  static const writeWhite = 'assets/icons/writeWhite.png';
   static const avatar = 'assets/icons/profile/human.png';
+  static const profile = 'assets/icons/drawer/profile.png';
+  static const settings = 'assets/icons/drawer/settings.png';
+  static const logout = 'assets/icons/drawer/logout.png';
+  static const history = 'assets/icons/drawer/history.png';
 }
 
 class LadyTaxiVars {

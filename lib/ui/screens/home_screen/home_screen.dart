@@ -22,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(milliseconds: 20), () => _showDialog(context));
+    Future.delayed(LadyTaxiDurations.alertBegin, () => _showDialog(context));
   }
 
   _showDialog(ctx) {
@@ -41,9 +41,14 @@ class _HomeScreenState extends State<HomeScreen> {
     Future.delayed(LadyTaxiDurations.panelOpen, () => _panelController.open());
   }
 
+  void _openDrawer(ctx) {
+    Scaffold.of(ctx).openDrawer();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const UserDrawer(),
       body: SafeArea(
         child: Stack(
           alignment: Alignment.topCenter,
@@ -64,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const MenuButton(),
+                    MenuButton(onTap: _openDrawer),
                     Expanded(child: Container()),
                   ],
                 ),

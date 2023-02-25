@@ -25,7 +25,7 @@ class ProfilePhoto extends StatelessWidget {
               ),
             ),
           ),
-          Positioned(bottom: 3, right: 0, child: Image.asset(LadyTaxiIconsName.write, cacheHeight: 24)),
+          Positioned(bottom: 3, right: 0, child: Image.asset(LadyTaxiIconsName.writeRed, cacheHeight: 24)),
         ],
       ),
     );

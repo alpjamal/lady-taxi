@@ -32,9 +32,11 @@ flutter:
 
   assets:
     - assets/images/onboarding/
-    - assets/images/cook.jpg
+    - assets/images/avatar.png
+    - assets/images/drawer/
     - assets/icons/profile/
     - assets/icons/congratulations.png
+    - assets/icons/writeWhite.png
     - assets/icons/point.png
     - assets/icons/menu.png
     - assets/icons/getlocation.png
