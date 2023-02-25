@@ -148,10 +148,10 @@ class _RegistryScreenState extends State<RegistryScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(title: const LocaleText('signup')),
-        body: Column(
+    return Scaffold(
+      appBar: AppBar(title: const LocaleText('signup')),
+      body: SafeArea(
+        child: Column(
           children: [
             Expanded(
               child: Column(
