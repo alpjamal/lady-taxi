@@ -62,7 +62,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               controller: _pageController,
               count: 3,
               effect: const ExpandingDotsEffect(
-                activeDotColor: LadyTaxiColors.primaryColor,
+                activeDotColor: LadyTaxiColors.primary,
                 dotColor: LadyTaxiColors.dot,
                 dotHeight: 8,
                 dotWidth: 8,

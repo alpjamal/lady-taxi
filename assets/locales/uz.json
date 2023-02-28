@@ -19,5 +19,16 @@
     "registryrepeat": "Kod qayta yurborilsin",
     "congratulations": "Tabriklaymiz!",
     "you_have_successfully_registered": "Siz muvaffaqiyatli ro'yhatdan o'tdingiz",
-    "my_shipping_adress": "Jo'natish manzilim"
+    "my_shipping_adress": "Jo'natish manzilim",
+    "profile": "Profil",
+    "history": "Safarlar tarixi",
+    "settings": "Sozlamalar",
+    "logout": "Chiqish",
+    "where_to_go": "Qayerga borasiz?",
+    "enter_an_adress": "Manzilni kiriting",
+    "location": "Joylashuv",
+    "hello":"Salom ",
+    "save_location":"Joyi saqlash",
+    "distance":"Masofa",
+    "payment":"Yo'l haqqi"
 }

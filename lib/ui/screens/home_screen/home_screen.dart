@@ -2,8 +2,15 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
-import './home_screen_widgets.dart';
 import '/utils/constants.dart';
+import './home_screen_widgets/congratulation_dialog.dart';
+import './home_screen_widgets/user_drawer.dart';
+import './home_screen_widgets/menu_button.dart';
+
+import './home_screen_widgets/panel_location.dart';
+import './home_screen_widgets/panel_enter_address.dart';
+import './home_screen_widgets/panel_user_addresses.dart';
+import './home_screen_widgets/panel_address_info.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -14,16 +21,17 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   Timer? _timer;
   final _panelController = PanelController();
-  bool isPanelOpen = false;
-  bool isOnSecondPanel = false;
-  double panelMaxHeight = LadyTaxiPanelHeight.little;
-  double fabHeight = LadyTaxiPanelHeight.little;
+  double? fabBottomPadding;
+  double _panelMaxHeight = LadyTaxiPanelHeight.location;
 
   @override
   void initState() {
     super.initState();
+    fabBottomPadding = _panelMaxHeight + 20;
     Future.delayed(LadyTaxiDurations.alertBegin, () => _showDialog(context));
   }
+
+  void _openDrawer(ctx) => Scaffold.of(ctx).openDrawer();
 
   _showDialog(ctx) {
     showDialog(
@@ -32,17 +40,25 @@ class _HomeScreenState extends State<HomeScreen> {
         _timer = Timer(LadyTaxiDurations.alert, () => Navigator.of(context).pop());
         return const CongratulationDialog();
       },
-    ).then((val) => _timer!.isActive ? _timer!.cancel() : null);
+    ).then((val) => _timer!.cancel());
   }
 
-  togglePanel() {
-    isOnSecondPanel = !isOnSecondPanel;
-    _panelController.close();
-    Future.delayed(LadyTaxiDurations.panelOpen, () => _panelController.open());
+  _togglePanel(double height) {
+    _panelController.close().then((value) {
+      _panelMaxHeight = height;
+      Future.delayed(LadyTaxiDurations.panelOpen, () => _panelController.open());
+    });
   }
 
-  void _openDrawer(ctx) {
-    Scaffold.of(ctx).openDrawer();
+  _panelBuilder(ScrollController sc) {
+    if (_panelMaxHeight == LadyTaxiPanelHeight.location) {
+      return LocationPanel(func: () => _togglePanel(LadyTaxiPanelHeight.userAdresses));
+    } else if (_panelMaxHeight == LadyTaxiPanelHeight.userAdresses) {
+      return UserAddressesPanel(func: () => _togglePanel(LadyTaxiPanelHeight.enterAddress));
+    } else if (_panelMaxHeight == LadyTaxiPanelHeight.enterAddress) {
+      return AddressEnteringPanel(func: () => _togglePanel(LadyTaxiPanelHeight.addressInfo), controller: sc);
+    }
+    return AddressInfoPanel(func: () => _togglePanel(LadyTaxiPanelHeight.location));
   }
 
   @override
@@ -55,41 +71,21 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             SlidingUpPanel(
               controller: _panelController,
-              maxHeight: panelMaxHeight,
-              minHeight: 0,
-              defaultPanelState: PanelState.OPEN,
-              panelBuilder: (sc) => panelMaxHeight == LadyTaxiPanelHeight.little
-                  ? LocationPanel(func: togglePanel)
-                  : UserAddressPanel(func: togglePanel),
               borderRadius: const BorderRadius.only(
                   topLeft: LadyTaxiRadiuses.bottomSheet, topRight: LadyTaxiRadiuses.bottomSheet),
-              body: Container(
-                color: Colors.black38,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    MenuButton(onTap: _openDrawer),
-                    Expanded(child: Container()),
-                  ],
-                ),
-              ),
-              onPanelSlide: (position) {
-                fabHeight = position * panelMaxHeight;
-                if (position == 0) {
-                  isOnSecondPanel
-                      ? panelMaxHeight = LadyTaxiPanelHeight.large
-                      : panelMaxHeight = LadyTaxiPanelHeight.little;
-                }
-                setState(() {});
-              },
+              maxHeight: _panelMaxHeight,
+              minHeight: 0,
+              defaultPanelState: PanelState.OPEN,
+              panelBuilder: (sc) => _panelBuilder(sc),
+              onPanelSlide: (position) => setState(() => fabBottomPadding = position * _panelMaxHeight + 20),
             ),
+            Positioned(top: 0, left: 0, child: MenuButton(onTap: _openDrawer)),
             Positioned(
               right: 20,
-              bottom: fabHeight + 20,
+              bottom: fabBottomPadding!,
               child: FloatingActionButton(
-                onPressed: togglePanel,
-                child: Image.asset(LadyTaxiIconsName.getLocation, color: LadyTaxiColors.primaryColor, cacheHeight: 22),
+                onPressed: () => _togglePanel(_panelMaxHeight),
+                child: Image.asset(LadyTaxiIconsName.getLocation, color: LadyTaxiColors.primary, cacheHeight: 22),
               ),
             ),
           ],

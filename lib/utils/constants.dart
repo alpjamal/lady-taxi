@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class LadyTaxiColors {
-  static const primaryColor = Color(0xFFFD0166);
+  static const primary = Color(0xFFFD0166);
   static const primaryWithOpacity10 = Color(0x1AFD0166);
   static const primaryWithOpacity30 = Color(0x4DFD0166);
   static const inputFill = Color(0xFFF0F0F0);
@@ -13,11 +13,11 @@ class LadyTaxiColors {
 class LadyTaxiTextStyles {
   static const appbarStyle = TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w600);
   static const defaultStyle = TextStyle(color: Colors.black, fontSize: 16);
-  static const defaultStyleRed = TextStyle(color: LadyTaxiColors.primaryColor, fontSize: 16);
+  static const defaultStyleRed = TextStyle(color: LadyTaxiColors.primary, fontSize: 16);
   static const defaultStyleRedBold =
-      TextStyle(color: LadyTaxiColors.primaryColor, fontSize: 16, fontWeight: FontWeight.bold);
+      TextStyle(color: LadyTaxiColors.primary, fontSize: 16, fontWeight: FontWeight.bold);
   static const onboardingInfo = TextStyle(fontSize: 20, color: Colors.black);
-  static const onboardingInfoRed = TextStyle(fontSize: 20, color: LadyTaxiColors.primaryColor);
+  static const onboardingInfoRed = TextStyle(fontSize: 20, color: LadyTaxiColors.primary);
   static const numpad = TextStyle(fontSize: 22, fontWeight: FontWeight.bold);
   static const repeatBtn = TextStyle(
     fontSize: 13,
@@ -25,11 +25,13 @@ class LadyTaxiTextStyles {
     fontFamily: 'Poppins',
     decoration: TextDecoration.underline,
   );
-  static const address = TextStyle(fontSize: 20, fontFamily: 'Poppins', fontWeight: FontWeight.bold);
+  static const address = TextStyle(fontSize: 20, fontFamily: 'Poppins', fontWeight: FontWeight.bold, color: Colors.black);
   static const hintText = TextStyle(fontSize: 24, color: LadyTaxiColors.gray);
   static const userName =
       TextStyle(fontSize: 20, fontFamily: 'Poppins', color: Colors.white, fontWeight: FontWeight.bold);
   static const userContact = TextStyle(fontSize: 14, fontFamily: 'Poppins', color: Colors.white);
+  static const panelAddresTitle = TextStyle(fontSize: 16, fontFamily: 'Poppins', fontWeight: FontWeight.bold);
+  static const panelAddresSubtitle = TextStyle(fontSize: 12, fontFamily: 'Poppins');
 }
 
 class LadyTaxiRadiuses {
@@ -47,7 +49,7 @@ class LadyTaxiDurations {
   static const alert = Duration(seconds: 5);
   static const alertBegin = Duration(milliseconds: 50);
   static const panelClose = Duration(milliseconds: 100);
-  static const panelOpen = Duration(milliseconds: 400);
+  static const panelOpen = Duration(milliseconds: 200);
 }
 
 class LadyTaxiIconsName {
@@ -69,6 +71,8 @@ class LadyTaxiVars {
 }
 
 class LadyTaxiPanelHeight {
-  static const little = 160.0;
-  static const large = 400.0;
+  static const location = 160.0;
+  static const userAdresses = 350.0;
+  static const enterAddress = 550.0;
+  static const addressInfo = 360.0;
 }

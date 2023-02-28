@@ -19,5 +19,16 @@
     "registryrepeat": "Повторно отправить код подтверждения",
     "congratulations": "Поздравления!",
     "you_have_successfully_registered": "Вы успешно зарегистрировались.",
-    "my_shipping_adress": "Мой адрес доставки"
+    "my_shipping_adress": "Мой адрес доставки",
+    "profile": "Профиль",
+    "history": "История",
+    "settings": "Настройки",
+    "logout": "Выйти",
+    "where_to_go": "Куда мы едем?",
+    "enter_an_adress": "Введите адрес",
+    "location": "Местоположение ",
+    "hello":"Привет ",
+    "save_location":"Сохранить местоположение",
+    "distance":"Расстояние",
+    "payment":"Плата за проезд"
 }

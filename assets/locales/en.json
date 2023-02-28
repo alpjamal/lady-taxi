@@ -19,5 +19,16 @@
     "registryrepeat": "Resend the confirmation code",
     "congratulations": "Congratulations!",
     "you_have_successfully_registered": "You have successfully registered.",
-    "my_shipping_adress": "My shipping address"
+    "my_shipping_adress": "My shipping address",
+    "profile": "Profile",
+    "history": "History",
+    "settings": "Settings",
+    "logout": "Log Out",
+    "where_to_go": "Where to go?",
+    "enter_an_adress": "Enter the address",
+    "location": "Location",
+    "hello":"Hello ",
+    "save_location":"Save location",
+    "distance":"Distance",
+    "payment":"Payment"
 }

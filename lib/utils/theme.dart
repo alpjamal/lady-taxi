@@ -3,7 +3,7 @@ import './constants.dart';
 
 class LadyTaxiTheme {
   final themeData = ThemeData(
-    primaryColor: LadyTaxiColors.primaryColor,
+    primaryColor: LadyTaxiColors.primary,
     appBarTheme: const AppBarTheme(
       toolbarHeight: 80,
       backgroundColor: Colors.transparent,
@@ -13,14 +13,14 @@ class LadyTaxiTheme {
     ),
     textButtonTheme: const TextButtonThemeData(
       style: ButtonStyle(
-        iconColor: MaterialStatePropertyAll<Color>(LadyTaxiColors.primaryColor),
+        iconColor: MaterialStatePropertyAll<Color>(LadyTaxiColors.primary),
       ),
     ),
     fontFamily: 'Roboto',
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         disabledBackgroundColor: LadyTaxiColors.primaryWithOpacity10,
-        backgroundColor: LadyTaxiColors.primaryColor,
+        backgroundColor: LadyTaxiColors.primary,
         elevation: 0,
         textStyle: LadyTaxiTextStyles.defaultStyle,
         minimumSize: const Size.fromHeight(50),

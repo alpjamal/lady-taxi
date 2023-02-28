@@ -23,7 +23,6 @@ class ProfileScreen extends StatelessWidget {
                   InputField(context.localeString('name')),
                   InputField(context.localeString('birthdate')),
                   InputField(phoneNum, enabled: false),
-                  // const Spacer(),
                   const SizedBox(height: 200),
                   Padding(
                     padding: const EdgeInsets.only(top: 20),

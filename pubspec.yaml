@@ -18,6 +18,7 @@ dependencies:
   flutter_locales: ^2.0.2
   google_maps_flutter: ^2.2.4
   sliding_up_panel: ^2.0.0+1
+  flutter_screenutil: ^5.6.1
 
 dev_dependencies:
   flutter_test:
@@ -35,6 +36,7 @@ flutter:
     - assets/images/avatar.png
     - assets/images/drawer/
     - assets/icons/profile/
+    - assets/icons/
     - assets/icons/congratulations.png
     - assets/icons/writeWhite.png
     - assets/icons/point.png
