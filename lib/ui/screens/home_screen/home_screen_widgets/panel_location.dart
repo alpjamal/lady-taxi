@@ -16,9 +16,9 @@ class LocationPanel extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(20, 20, 0, 20),
           child: Row(
             children: [
-              Image.asset(LadyTaxiIconsName.point, cacheWidth: 25),
+              Image.asset(LTIconName.point, cacheWidth: 25),
               const SizedBox(width: 20),
-              const Text('Chilonzor 9 dahasi 13', style: LadyTaxiTextStyles.address),
+              const Text('Chilonzor 9 dahasi 13', style: LTTextStyle.address),
             ],
           ),
         ),

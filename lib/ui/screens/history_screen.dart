@@ -21,8 +21,8 @@ class HistoryScreen extends StatelessWidget {
               children: [
                 SizedBox(
                   width: double.infinity,
-                  child: Text(object['date'],
-                      style: LadyTaxiTextStyles.address.copyWith(fontSize: 18), textAlign: TextAlign.end),
+                  child:
+                      Text(object['date'], style: LTTextStyle.address.copyWith(fontSize: 18), textAlign: TextAlign.end),
                 ),
                 ...List.generate(
                   object['trips'].length,
@@ -54,15 +54,15 @@ class HistoryScreen extends StatelessWidget {
 
   ListTile _buildPaymentInfo(History trip) {
     return ListTile(
-      leading: const SizedBox(
-          height: double.infinity, child: Icon(Icons.money_outlined, size: 30, color: LadyTaxiColors.green)),
+      leading:
+          const SizedBox(height: double.infinity, child: Icon(Icons.money_outlined, size: 30, color: LTColors.green)),
       contentPadding: const EdgeInsets.all(0),
-      title: Text(trip.payment, style: LadyTaxiTextStyles.hisPay),
+      title: Text(trip.payment, style: LTTextStyle.hisPay),
       trailing: TextButton(
         onPressed: () {},
         child: trip.isCompleted
-            ? const LocaleText('completed', style: LadyTaxiTextStyles.hisPayBtn)
-            : const LocaleText('cancelled', style: LadyTaxiTextStyles.hisPayBtnErr),
+            ? const LocaleText('completed', style: LTTextStyle.hisPayBtn)
+            : const LocaleText('cancelled', style: LTTextStyle.hisPayBtnErr),
       ),
     );
   }
@@ -71,16 +71,15 @@ class HistoryScreen extends StatelessWidget {
     return Column(
       children: [
         ListTile(
-          leading:
-              const SizedBox(height: double.infinity, child: Icon(Icons.adjust, size: 30, color: LadyTaxiColors.green)),
+          leading: const SizedBox(height: double.infinity, child: Icon(Icons.adjust, size: 30, color: LTColors.green)),
           contentPadding: const EdgeInsets.all(0),
-          title: Text(trip.fromWhere, style: LadyTaxiTextStyles.panelAddresTitle),
+          title: Text(trip.fromWhere, style: LTTextStyle.panelAddresTitle),
         ),
         ListTile(
           leading: const SizedBox(
-              height: double.infinity, child: Icon(Icons.location_on_rounded, size: 30, color: LadyTaxiColors.primary)),
+              height: double.infinity, child: Icon(Icons.location_on_rounded, size: 30, color: LTColors.primary)),
           contentPadding: const EdgeInsets.all(0),
-          title: Text(trip.whereTo, style: LadyTaxiTextStyles.panelAddresTitle),
+          title: Text(trip.whereTo, style: LTTextStyle.panelAddresTitle),
         ),
       ],
     );

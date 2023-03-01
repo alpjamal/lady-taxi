@@ -14,7 +14,7 @@ class MenuButton extends StatelessWidget {
         margin: const EdgeInsets.all(20),
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(8)),
-        child: Image.asset(LadyTaxiIconsName.menu, cacheWidth: 17),
+        child: Image.asset(LTIconName.menu, cacheWidth: 17),
       ),
     );
   }

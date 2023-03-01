@@ -20,7 +20,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   _btnHandle() {
     isLast
         ? Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) => const RegistryScreen()))
-        : _pageController.nextPage(duration: LadyTaxiDurations.pageView, curve: Curves.fastOutSlowIn);
+        : _pageController.nextPage(duration: LTDuration.pageView, curve: Curves.fastOutSlowIn);
   }
 
   @override
@@ -38,7 +38,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     isLast = true;
                     _btnHandle();
                   },
-                  child: const LocaleText("skip", style: LadyTaxiTextStyles.defaultStyleRed),
+                  child: const LocaleText("skip", style: LTTextStyle.defaultStyleRed),
                 ),
               ],
             ),
@@ -62,8 +62,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               controller: _pageController,
               count: 3,
               effect: const ExpandingDotsEffect(
-                activeDotColor: LadyTaxiColors.primary,
-                dotColor: LadyTaxiColors.dot,
+                activeDotColor: LTColors.primary,
+                dotColor: LTColors.dot,
                 dotHeight: 8,
                 dotWidth: 8,
               ),

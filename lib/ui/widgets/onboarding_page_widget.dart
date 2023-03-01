@@ -21,7 +21,7 @@ class OnboardingPage extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.fromLTRB(60, 20, 60, 0),
-          child: LocaleText('info$index', textAlign: TextAlign.center, style: LadyTaxiTextStyles.onboardingInfo),
+          child: LocaleText('info$index', textAlign: TextAlign.center, style: LTTextStyle.onboardingInfo),
         ),
       ],
     );

@@ -37,7 +37,7 @@ class UserDrawer extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 20),
       child: Container(
         height: 275,
-        color: LadyTaxiColors.primary,
+        color: LTColors.primary,
         child: Stack(
           children: [
             Padding(
@@ -53,15 +53,14 @@ class UserDrawer extends StatelessWidget {
                       children: [
                         ClipOval(
                             child: Image.asset('assets/images/avatar.png', fit: BoxFit.cover, width: 95, height: 95)),
-                        Positioned(
-                            bottom: 3, right: 0, child: Image.asset(LadyTaxiIconsName.writeWhite, cacheHeight: 24)),
+                        Positioned(bottom: 3, right: 0, child: Image.asset(LTIconName.writeWhite, cacheHeight: 24)),
                       ],
                     ),
                   ),
                   const SizedBox(height: 20),
-                  const Text('Madina Aliyeva', style: LadyTaxiTextStyles.userName),
+                  const Text('Madina Aliyeva', style: LTTextStyle.userName),
                   const SizedBox(height: 5),
-                  const Text('+998 91 123 45 67', style: LadyTaxiTextStyles.userContact),
+                  const Text('+998 91 123 45 67', style: LTTextStyle.userContact),
                 ],
               ),
             ),
@@ -75,8 +74,8 @@ class UserDrawer extends StatelessWidget {
 
   _listTile(String title, IconData icon, Function() func) {
     return ListTile(
-      title: LocaleText(title, style: LadyTaxiTextStyles.defaultStyle),
-      leading: Icon(icon, size: 30, color: LadyTaxiColors.gray),
+      title: LocaleText(title, style: LTTextStyle.defaultStyle),
+      leading: Icon(icon, size: 30, color: LTColors.gray),
       contentPadding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
       horizontalTitleGap: 0,
       onTap: func,

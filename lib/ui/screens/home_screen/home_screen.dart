@@ -22,13 +22,13 @@ class _HomeScreenState extends State<HomeScreen> {
   Timer? _timer;
   final _panelController = PanelController();
   double? fabBottomPadding;
-  double _panelMaxHeight = LadyTaxiPanelHeight.location;
+  double _panelMaxHeight = LTPanelHeight.location;
 
   @override
   void initState() {
     super.initState();
     fabBottomPadding = _panelMaxHeight + 20;
-    Future.delayed(LadyTaxiDurations.alertBegin, () => _showDialog(context));
+    Future.delayed(LTDuration.alertBegin, () => _showDialog(context));
   }
 
   void _openDrawer(ctx) => Scaffold.of(ctx).openDrawer();
@@ -37,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
     showDialog(
       context: ctx,
       builder: (ctx) {
-        _timer = Timer(LadyTaxiDurations.alert, () => Navigator.of(context).pop());
+        _timer = Timer(LTDuration.alert, () => Navigator.of(context).pop());
         return const CongratulationDialog();
       },
     ).then((val) => _timer!.cancel());
@@ -46,19 +46,19 @@ class _HomeScreenState extends State<HomeScreen> {
   _togglePanel(double height) {
     _panelController.close().then((value) {
       _panelMaxHeight = height;
-      Future.delayed(LadyTaxiDurations.panelOpen, () => _panelController.open());
+      Future.delayed(LTDuration.panelOpen, () => _panelController.open());
     });
   }
 
   _panelBuilder(ScrollController sc) {
-    if (_panelMaxHeight == LadyTaxiPanelHeight.location) {
-      return LocationPanel(func: () => _togglePanel(LadyTaxiPanelHeight.userAdresses));
-    } else if (_panelMaxHeight == LadyTaxiPanelHeight.userAdresses) {
-      return UserAddressesPanel(func: () => _togglePanel(LadyTaxiPanelHeight.enterAddress));
-    } else if (_panelMaxHeight == LadyTaxiPanelHeight.enterAddress) {
-      return AddressEnteringPanel(func: () => _togglePanel(LadyTaxiPanelHeight.addressInfo), controller: sc);
+    if (_panelMaxHeight == LTPanelHeight.location) {
+      return LocationPanel(func: () => _togglePanel(LTPanelHeight.userAdresses));
+    } else if (_panelMaxHeight == LTPanelHeight.userAdresses) {
+      return UserAddressesPanel(func: () => _togglePanel(LTPanelHeight.enterAddress));
+    } else if (_panelMaxHeight == LTPanelHeight.enterAddress) {
+      return AddressEnteringPanel(func: () => _togglePanel(LTPanelHeight.addressInfo), controller: sc);
     }
-    return AddressInfoPanel(func: () => _togglePanel(LadyTaxiPanelHeight.location));
+    return AddressInfoPanel(func: () => _togglePanel(LTPanelHeight.location));
   }
 
   @override
@@ -71,8 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             SlidingUpPanel(
               controller: _panelController,
-              borderRadius: const BorderRadius.only(
-                  topLeft: LadyTaxiRadiuses.bottomSheet, topRight: LadyTaxiRadiuses.bottomSheet),
+              borderRadius: const BorderRadius.only(topLeft: LTRadius.bottomSheet, topRight: LTRadius.bottomSheet),
               maxHeight: _panelMaxHeight,
               minHeight: 0,
               defaultPanelState: PanelState.OPEN,
@@ -85,7 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
               bottom: fabBottomPadding!,
               child: FloatingActionButton(
                 onPressed: () => _togglePanel(_panelMaxHeight),
-                child: Image.asset(LadyTaxiIconsName.getLocation, color: LadyTaxiColors.primary, cacheHeight: 22),
+                child: Image.asset(LTIconName.getLocation, color: LTColors.primary, cacheHeight: 22),
               ),
             ),
           ],

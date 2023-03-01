@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class LadyTaxiColors {
+class LTColors {
   static const primary = Color(0xFFFD0166);
   static const primaryWithOpacity10 = Color(0x1AFD0166);
   static const primaryWithOpacity30 = Color(0x4DFD0166);
@@ -11,28 +11,31 @@ class LadyTaxiColors {
   static const green = Colors.green;
 }
 
-class LadyTaxiTextStyles {
+class LTTextStyle {
   static const appbarStyle = TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w600);
   static const defaultStyle = TextStyle(fontSize: 16, color: Colors.black);
-  static const defaultStyleRed = TextStyle(fontSize: 16, color: LadyTaxiColors.primary);
-  static const defaultStyleRedBold = TextStyle(fontSize: 16, color: LadyTaxiColors.primary, fontWeight: FontWeight.bold);
+  static const defaultStyleRed = TextStyle(fontSize: 16, color: LTColors.primary);
+  static const defaultStyleRedBold = TextStyle(fontSize: 16, color: LTColors.primary, fontWeight: FontWeight.bold);
   static const onboardingInfo = TextStyle(fontSize: 20, color: Colors.black);
-  static const onboardingInfoRed = TextStyle(fontSize: 20, color: LadyTaxiColors.primary);
+  static const onboardingInfoRed = TextStyle(fontSize: 20, color: LTColors.primary);
   static const numpad = TextStyle(fontSize: 22, fontWeight: FontWeight.bold);
-  static const hintText = TextStyle(fontSize: 24, color: LadyTaxiColors.gray);
-  static const repeatBtn = TextStyle(fontSize: 13, fontFamily: 'Poppins', color: Colors.blue, decoration: TextDecoration.underline);
+  static const hintText = TextStyle(fontSize: 24, color: LTColors.gray);
+  static const repeatBtn =
+      TextStyle(fontSize: 13, fontFamily: 'Poppins', color: Colors.blue, decoration: TextDecoration.underline);
   static const panelAddresSubtitle = TextStyle(fontSize: 12, fontFamily: 'Poppins');
   static const userContact = TextStyle(fontSize: 14, fontFamily: 'Poppins', color: Colors.white);
   static const panelAddresTitle = TextStyle(fontSize: 16, fontFamily: 'Poppins');
   static const panelAddresTitleBold = TextStyle(fontSize: 16, fontFamily: 'Poppins', fontWeight: FontWeight.bold);
-  static const address = TextStyle(fontSize: 20, fontFamily: 'Poppins', color: Colors.black, fontWeight: FontWeight.bold);
-  static const userName = TextStyle(fontSize: 20, fontFamily: 'Poppins', color: Colors.white, fontWeight: FontWeight.bold);
+  static const address =
+      TextStyle(fontSize: 20, fontFamily: 'Poppins', color: Colors.black, fontWeight: FontWeight.bold);
+  static const userName =
+      TextStyle(fontSize: 20, fontFamily: 'Poppins', color: Colors.white, fontWeight: FontWeight.bold);
   static const hisPay = TextStyle(fontSize: 16, fontFamily: 'Poppins', fontWeight: FontWeight.bold);
   static const hisPayBtn = TextStyle(fontSize: 16, fontFamily: 'Poppins', color: Colors.green);
   static const hisPayBtnErr = TextStyle(fontSize: 16, fontFamily: 'Poppins', color: Colors.red);
 }
 
-class LadyTaxiRadiuses {
+class LTRadius {
   static const input = Radius.circular(12);
   static const numpad = Radius.circular(30);
   static const dialog = Radius.circular(30);
@@ -41,7 +44,7 @@ class LadyTaxiRadiuses {
   static const bottomSheet = Radius.circular(30);
 }
 
-class LadyTaxiDurations {
+class LTDuration {
   static const message = Duration(seconds: 119);
   static const pageView = Duration(milliseconds: 300);
   static const alert = Duration(seconds: 5);
@@ -50,7 +53,7 @@ class LadyTaxiDurations {
   static const panelOpen = Duration(milliseconds: 200);
 }
 
-class LadyTaxiIconsName {
+class LTIconName {
   static const getLocation = 'assets/icons/getlocation.png';
   static const congratulation = 'assets/icons/congratulations.png';
   static const point = 'assets/icons/point.png';
@@ -64,11 +67,11 @@ class LadyTaxiIconsName {
   static const history = 'assets/icons/drawer/history.png';
 }
 
-class LadyTaxiVars {
+class LTVar {
   static const nums = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '*', '0', '.'];
 }
 
-class LadyTaxiPanelHeight {
+class LTPanelHeight {
   static const location = 160.0;
   static const userAdresses = 350.0;
   static const enterAddress = 550.0;

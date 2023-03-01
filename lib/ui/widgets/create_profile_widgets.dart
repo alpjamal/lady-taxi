@@ -12,20 +12,20 @@ class ProfilePhoto extends StatelessWidget {
       child: Stack(
         children: [
           ClipRRect(
-            borderRadius: const BorderRadius.all(LadyTaxiRadiuses.profilePhoto),
+            borderRadius: const BorderRadius.all(LTRadius.profilePhoto),
             child: Container(
               width: 100,
               height: 100,
-              decoration: const BoxDecoration(color: LadyTaxiColors.inputFill, shape: BoxShape.circle),
+              decoration: const BoxDecoration(color: LTColors.inputFill, shape: BoxShape.circle),
               child: Image.asset(
-                LadyTaxiIconsName.avatar,
+                LTIconName.avatar,
                 alignment: Alignment.bottomCenter,
-                color: LadyTaxiColors.inputBorder,
+                color: LTColors.inputBorder,
                 cacheHeight: 75,
               ),
             ),
           ),
-          Positioned(bottom: 3, right: 0, child: Image.asset(LadyTaxiIconsName.writeRed, cacheHeight: 24)),
+          Positioned(bottom: 3, right: 0, child: Image.asset(LTIconName.writeRed, cacheHeight: 24)),
         ],
       ),
     );
@@ -42,7 +42,7 @@ class InputField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 20),
       child: TextFormField(
-        style: LadyTaxiTextStyles.defaultStyle,
+        style: LTTextStyle.defaultStyle,
         decoration: InputDecoration(hintText: hintText),
         enabled: enabled,
         onSaved: (newValue) {},

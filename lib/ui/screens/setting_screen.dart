@@ -27,7 +27,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             _buildField(
                 'notifications',
                 Switch(
-                    activeColor: LadyTaxiColors.primary,
+                    activeColor: LTColors.primary,
                     value: _notification,
                     onChanged: (value) => setState(() => _notification = value))),
             _buildField('security', const Icon(Icons.arrow_forward_ios)),
@@ -35,7 +35,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             _buildField(
                 'night_mode',
                 Switch(
-                    activeColor: LadyTaxiColors.primary,
+                    activeColor: LTColors.primary,
                     value: _darkMode,
                     onChanged: (value) => setState(() => _darkMode = value))),
           ],
@@ -50,7 +50,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       child: TextField(
         decoration: InputDecoration(
           hintText: context.localeString(hintText),
-          hintStyle: LadyTaxiTextStyles.defaultStyle,
+          hintStyle: LTTextStyle.defaultStyle,
           suffixIcon: item,
         ),
       ),

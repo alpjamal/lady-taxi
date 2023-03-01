@@ -33,7 +33,7 @@ class ProfileDataScreen extends StatelessWidget {
       child: TextField(
         decoration: InputDecoration(
           hintText: hintText,
-          hintStyle: LadyTaxiTextStyles.defaultStyle,
+          hintStyle: LTTextStyle.defaultStyle,
           suffixIcon: Icon(icon),
         ),
       ),

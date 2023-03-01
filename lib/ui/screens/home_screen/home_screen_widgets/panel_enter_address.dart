@@ -17,9 +17,9 @@ class AddressEnteringPanel extends StatelessWidget {
       leading: const SizedBox(height: double.infinity, child: Icon(Icons.access_time, size: 28)),
       style: ListTileStyle.drawer,
       contentPadding: const EdgeInsets.all(0),
-      title: Text(title, style: LadyTaxiTextStyles.panelAddresTitleBold),
-      subtitle: Text(subtitle, style: LadyTaxiTextStyles.panelAddresSubtitle.copyWith(height: 2.5)),
-      trailing: Text('$distance km', style: LadyTaxiTextStyles.panelAddresTitleBold),
+      title: Text(title, style: LTTextStyle.panelAddresTitleBold),
+      subtitle: Text(subtitle, style: LTTextStyle.panelAddresSubtitle.copyWith(height: 2.5)),
+      trailing: Text('$distance km', style: LTTextStyle.panelAddresTitleBold),
     );
   }
 
@@ -30,7 +30,7 @@ class AddressEnteringPanel extends StatelessWidget {
       children: [
         const Padding(
           padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
-          child: LocaleText('enter_an_adress', style: LadyTaxiTextStyles.address, textAlign: TextAlign.center),
+          child: LocaleText('enter_an_adress', style: LTTextStyle.address, textAlign: TextAlign.center),
         ),
         SizedBox(
           height: 130,
@@ -44,7 +44,7 @@ class AddressEnteringPanel extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: const [
                       Center(child: Icon(Icons.adjust, size: 30, color: Colors.green)),
-                      Center(child: Icon(Icons.location_on_rounded, size: 30, color: LadyTaxiColors.primary)),
+                      Center(child: Icon(Icons.location_on_rounded, size: 30, color: LTColors.primary)),
                     ],
                   ),
                 ],
@@ -82,9 +82,9 @@ class AddressEnteringPanel extends StatelessWidget {
         ),
         _buildDivider(),
         ListTile(
-          leading: Image.asset('assets/icons/bookmark.png', color: LadyTaxiColors.primary, cacheWidth: 22),
+          leading: Image.asset('assets/icons/bookmark.png', color: LTColors.primary, cacheWidth: 22),
           contentPadding: const EdgeInsets.all(0),
-          title: const LocaleText('save_location', style: LadyTaxiTextStyles.panelAddresTitleBold),
+          title: const LocaleText('save_location', style: LTTextStyle.panelAddresTitleBold),
           trailing: const Icon(Icons.arrow_forward_ios_rounded),
         ),
         SizedBox(

@@ -15,12 +15,11 @@ class LadyTaxiBottomSheet extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
           decoration: const BoxDecoration(
             color: Colors.white,
-            borderRadius:
-                BorderRadius.only(topLeft: LadyTaxiRadiuses.bottomSheet, topRight: LadyTaxiRadiuses.bottomSheet),
+            borderRadius: BorderRadius.only(topLeft: LTRadius.bottomSheet, topRight: LTRadius.bottomSheet),
           ),
           child: Column(
             children: [
-              Container(width: 80, height: 3, color: LadyTaxiColors.primary),
+              Container(width: 80, height: 3, color: LTColors.primary),
               ...children,
             ],
           ),

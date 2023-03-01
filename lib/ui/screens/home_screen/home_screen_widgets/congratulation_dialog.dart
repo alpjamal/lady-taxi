@@ -12,21 +12,21 @@ class CongratulationDialog extends StatelessWidget {
     return BackdropFilter(
       filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
       child: SimpleDialog(
-        title: Image.asset(LadyTaxiIconsName.congratulation),
+        title: Image.asset(LTIconName.congratulation),
         titlePadding: const EdgeInsets.fromLTRB(70, 70, 70, 40),
         shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(LadyTaxiRadiuses.dialog),
+          borderRadius: BorderRadius.all(LTRadius.dialog),
         ),
         children: [
           const LocaleText(
             'congratulations',
-            style: LadyTaxiTextStyles.appbarStyle,
+            style: LTTextStyle.appbarStyle,
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 20),
           LocaleText(
             'you_have_successfully_registered',
-            style: LadyTaxiTextStyles.defaultStyle.copyWith(color: Colors.black54),
+            style: LTTextStyle.defaultStyle.copyWith(color: Colors.black54),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 50),

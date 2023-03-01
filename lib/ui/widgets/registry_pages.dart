@@ -18,13 +18,13 @@ class RegistryNumberPage extends StatelessWidget {
         LocaleText(
           'enteranumber',
           textAlign: TextAlign.center,
-          style: LadyTaxiTextStyles.defaultStyle.copyWith(height: 1.8, fontFamily: 'Poppins'),
+          style: LTTextStyle.defaultStyle.copyWith(height: 1.8, fontFamily: 'Poppins'),
         ),
         const SizedBox(height: 60),
         Row(children: [
           Padding(
             padding: const EdgeInsets.fromLTRB(35, 0, 0, 5),
-            child: LocaleText('phoneinputlabel', style: LadyTaxiTextStyles.defaultStyle.copyWith(fontSize: 12)),
+            child: LocaleText('phoneinputlabel', style: LTTextStyle.defaultStyle.copyWith(fontSize: 12)),
           ),
         ]),
         Padding(
@@ -32,7 +32,7 @@ class RegistryNumberPage extends StatelessWidget {
           child: TextField(
             keyboardType: TextInputType.none,
             controller: textEditingController,
-            style: LadyTaxiTextStyles.defaultStyle.copyWith(fontSize: 18, fontFamily: 'Inter'),
+            style: LTTextStyle.defaultStyle.copyWith(fontSize: 18, fontFamily: 'Inter'),
           ),
         ),
         const Spacer(),
@@ -73,14 +73,14 @@ class RegistryConfirmPage extends StatelessWidget {
         RichText(
           textAlign: TextAlign.center,
           text: TextSpan(
-            style: LadyTaxiTextStyles.defaultStyle.copyWith(height: 1.6, fontFamily: 'Poppins'),
+            style: LTTextStyle.defaultStyle.copyWith(height: 1.6, fontFamily: 'Poppins'),
             children: [
               TextSpan(text: context.localeString('registryinfo1')),
-              if (Locales.lang == 'uz') TextSpan(text: userNumber, style: LadyTaxiTextStyles.defaultStyleRedBold),
+              if (Locales.lang == 'uz') TextSpan(text: userNumber, style: LTTextStyle.defaultStyleRedBold),
               TextSpan(text: context.localeString('registryinfo2')),
-              if (Locales.lang != 'uz') TextSpan(text: userNumber, style: LadyTaxiTextStyles.defaultStyleRedBold),
+              if (Locales.lang != 'uz') TextSpan(text: userNumber, style: LTTextStyle.defaultStyleRedBold),
               TextSpan(text: context.localeString('registryinfo3')),
-              TextSpan(text: time, style: LadyTaxiTextStyles.defaultStyleRedBold),
+              TextSpan(text: time, style: LTTextStyle.defaultStyleRedBold),
             ],
           ),
         ),
@@ -101,7 +101,7 @@ class RegistryConfirmPage extends StatelessWidget {
           onPressed: repeat,
           child: const Padding(
             padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
-            child: LocaleText('registryrepeat', style: LadyTaxiTextStyles.repeatBtn),
+            child: LocaleText('registryrepeat', style: LTTextStyle.repeatBtn),
           ),
         ),
         const Spacer(),

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '/utils/constants.dart';
 
 class DashLine extends StatelessWidget {
-  const DashLine({Key? key, this.height = 1, this.color = LadyTaxiColors.primary}) : super(key: key);
+  const DashLine({Key? key, this.height = 1, this.color = LTColors.primary}) : super(key: key);
   final double height;
   final Color color;
 

@@ -25,7 +25,7 @@ class _RegistryScreenState extends State<RegistryScreen> {
   bool onConfirmPage = false;
 
   Timer? _timer;
-  int _duration = LadyTaxiDurations.message.inSeconds;
+  int _duration = LTDuration.message.inSeconds;
   String? _time;
 
   formatTime(int duration) {
@@ -62,7 +62,7 @@ class _RegistryScreenState extends State<RegistryScreen> {
 
   _goToConfirm() {
     setState(() => buttonDisabled = true);
-    _pageController.nextPage(duration: LadyTaxiDurations.pageView, curve: Curves.fastOutSlowIn);
+    _pageController.nextPage(duration: LTDuration.pageView, curve: Curves.fastOutSlowIn);
     startTimer();
     onConfirmPage = true;
   }
@@ -95,7 +95,7 @@ class _RegistryScreenState extends State<RegistryScreen> {
     userOtpInput = '';
     _otpController.clear();
     _timer!.cancel();
-    _duration = LadyTaxiDurations.message.inSeconds;
+    _duration = LTDuration.message.inSeconds;
     formatTime(_duration);
     setState(() => buttonDisabled = true);
     startTimer();
@@ -110,7 +110,7 @@ class _RegistryScreenState extends State<RegistryScreen> {
   }
 
   _inkWellOnNumPage(int index) {
-    if (LadyTaxiVars.nums[index] == '.' && userInputNumber.length > 5) {
+    if (LTVar.nums[index] == '.' && userInputNumber.length > 5) {
       var list = userInputNumber.split('');
       list.removeLast();
       userInputNumber = list.join();
@@ -118,30 +118,30 @@ class _RegistryScreenState extends State<RegistryScreen> {
         userInputNumber = userInputNumber.trimRight();
       }
       _updateUserInput();
-    } else if (LadyTaxiVars.nums[index] != '*' && LadyTaxiVars.nums[index] != '.' && userInputNumber.length < 17) {
+    } else if (LTVar.nums[index] != '*' && LTVar.nums[index] != '.' && userInputNumber.length < 17) {
       if (userInputNumber.length == 7 || userInputNumber.length == 11 || userInputNumber.length == 14) {
         userInputNumber += ' ';
       }
-      userInputNumber += LadyTaxiVars.nums[index];
+      userInputNumber += LTVar.nums[index];
       _updateUserInput();
     }
   }
 
   _inkWellOnConfirmPage(int index) {
     int editIndex = userOtpInput.length;
-    if (LadyTaxiVars.nums[index] == '.') {
+    if (LTVar.nums[index] == '.') {
       editIndex = userOtpInput.length - 1;
       if (editIndex >= 0) {
         FocusScope.of(context).previousFocus();
         _otpController.setValue('', editIndex);
         userOtpInput = userOtpInput.substring(0, userOtpInput.length - 1);
       }
-    } else if (LadyTaxiVars.nums[index] != '*' && LadyTaxiVars.nums[index] != '.') {
+    } else if (LTVar.nums[index] != '*' && LTVar.nums[index] != '.') {
       editIndex = userOtpInput.length;
       if (userOtpInput.length < 4) {
         FocusScope.of(context).nextFocus();
-        _otpController.setValue(LadyTaxiVars.nums[index], editIndex);
-        userOtpInput += LadyTaxiVars.nums[index];
+        _otpController.setValue(LTVar.nums[index], editIndex);
+        userOtpInput += LTVar.nums[index];
       }
     }
   }
@@ -175,8 +175,8 @@ class _RegistryScreenState extends State<RegistryScreen> {
             Container(
               height: 264,
               decoration: const BoxDecoration(
-                color: LadyTaxiColors.inputFill,
-                borderRadius: BorderRadius.only(topLeft: LadyTaxiRadiuses.numpad, topRight: LadyTaxiRadiuses.numpad),
+                color: LTColors.inputFill,
+                borderRadius: BorderRadius.only(topLeft: LTRadius.numpad, topRight: LTRadius.numpad),
               ),
               padding: const EdgeInsets.all(0),
               margin: const EdgeInsets.all(0),
@@ -192,9 +192,9 @@ class _RegistryScreenState extends State<RegistryScreen> {
                   return InkWell(
                     onTap: () => _inkWellOnTap(index),
                     child: Center(
-                      child: LadyTaxiVars.nums[index] == '.'
+                      child: LTVar.nums[index] == '.'
                           ? const Icon(Icons.backspace, size: 20)
-                          : Text(LadyTaxiVars.nums[index], style: LadyTaxiTextStyles.numpad),
+                          : Text(LTVar.nums[index], style: LTTextStyle.numpad),
                     ),
                   );
                 },

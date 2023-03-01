@@ -13,8 +13,7 @@ class UserAddressesPanel extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Container(
         width: 60,
-        decoration:
-            BoxDecoration(border: Border.all(color: LadyTaxiColors.primary), borderRadius: BorderRadius.circular(25)),
+        decoration: BoxDecoration(border: Border.all(color: LTColors.primary), borderRadius: BorderRadius.circular(25)),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: const [Text('16 km'), Text('■'), Text('Uyim')],
@@ -31,8 +30,8 @@ class UserAddressesPanel extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
           child: RichText(
             text: TextSpan(children: [
-              TextSpan(text: context.localeString('hello'), style: LadyTaxiTextStyles.address),
-              TextSpan(text: 'Madina!', style: LadyTaxiTextStyles.address.copyWith(color: LadyTaxiColors.primary)),
+              TextSpan(text: context.localeString('hello'), style: LTTextStyle.address),
+              TextSpan(text: 'Madina!', style: LTTextStyle.address.copyWith(color: LTColors.primary)),
             ]),
           ),
         ),
@@ -42,7 +41,7 @@ class UserAddressesPanel extends StatelessWidget {
             suffixIcon: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Text('| ', style: LadyTaxiTextStyles.hintText),
+                const Text('| ', style: LTTextStyle.hintText),
                 IconButton(onPressed: func, icon: const Icon(Icons.search)),
               ],
             ),
