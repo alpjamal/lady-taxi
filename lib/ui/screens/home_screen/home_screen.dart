@@ -11,6 +11,7 @@ import './home_screen_widgets/panel_location.dart';
 import './home_screen_widgets/panel_enter_address.dart';
 import './home_screen_widgets/panel_user_addresses.dart';
 import './home_screen_widgets/panel_address_info.dart';
+import './home_screen_widgets/sign_out_panel.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -43,6 +44,11 @@ class _HomeScreenState extends State<HomeScreen> {
     ).then((val) => _timer!.cancel());
   }
 
+  _logOut() {
+    showModalBottomSheet(
+        backgroundColor: Colors.transparent, context: context, builder: (ctx) => SignOutPanel(context: context));
+  }
+
   _togglePanel(double height) {
     _panelController.close().then((value) {
       _panelMaxHeight = height;
@@ -64,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const UserDrawer(),
+      drawer: UserDrawer(_logOut),
       body: SafeArea(
         child: Stack(
           alignment: Alignment.topCenter,

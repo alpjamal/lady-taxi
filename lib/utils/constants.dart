@@ -20,16 +20,13 @@ class LTTextStyle {
   static const onboardingInfoRed = TextStyle(fontSize: 20, color: LTColors.primary);
   static const numpad = TextStyle(fontSize: 22, fontWeight: FontWeight.bold);
   static const hintText = TextStyle(fontSize: 24, color: LTColors.gray);
-  static const repeatBtn =
-      TextStyle(fontSize: 13, fontFamily: 'Poppins', color: Colors.blue, decoration: TextDecoration.underline);
+  static const repeatBtn = TextStyle(fontSize: 13, fontFamily: 'Poppins', color: Colors.blue, decoration: TextDecoration.underline);
   static const panelAddresSubtitle = TextStyle(fontSize: 12, fontFamily: 'Poppins');
   static const userContact = TextStyle(fontSize: 14, fontFamily: 'Poppins', color: Colors.white);
   static const panelAddresTitle = TextStyle(fontSize: 16, fontFamily: 'Poppins');
   static const panelAddresTitleBold = TextStyle(fontSize: 16, fontFamily: 'Poppins', fontWeight: FontWeight.bold);
-  static const address =
-      TextStyle(fontSize: 20, fontFamily: 'Poppins', color: Colors.black, fontWeight: FontWeight.bold);
-  static const userName =
-      TextStyle(fontSize: 20, fontFamily: 'Poppins', color: Colors.white, fontWeight: FontWeight.bold);
+  static const address = TextStyle(fontSize: 20, fontFamily: 'Poppins', color: Colors.black, fontWeight: FontWeight.bold);
+  static const userName = TextStyle(fontSize: 20, fontFamily: 'Poppins', color: Colors.white, fontWeight: FontWeight.bold);
   static const hisPay = TextStyle(fontSize: 16, fontFamily: 'Poppins', fontWeight: FontWeight.bold);
   static const hisPayBtn = TextStyle(fontSize: 16, fontFamily: 'Poppins', color: Colors.green);
   static const hisPayBtnErr = TextStyle(fontSize: 16, fontFamily: 'Poppins', color: Colors.red);

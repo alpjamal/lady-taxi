@@ -37,5 +37,9 @@
     "language":"Language",
     "night_mode":"Night mode",
     "completed":"Completed >",
-    "cancelled":"Cancelled >"
+    "cancelled":"Cancelled >",
+    "sign_out":"Sign Out",
+    "sure":"Are you leaving us?",
+    "cancel": "Cancel"
+
 }

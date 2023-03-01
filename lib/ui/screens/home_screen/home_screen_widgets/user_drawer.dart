@@ -7,7 +7,8 @@ import '../../setting_screen.dart';
 import '../../profile_data_screen.dart';
 
 class UserDrawer extends StatelessWidget {
-  const UserDrawer({super.key});
+  const UserDrawer(this.logout, {super.key});
+  final Function() logout;
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +25,7 @@ class UserDrawer extends StatelessWidget {
           _listTile('settings', Icons.settings, () {
             Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => const SettingsScreen()));
           }),
-          _listTile('logout', Icons.logout, () {
-            // Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => const ProfileSettingsScreen()));
-          }),
+          _listTile('logout', Icons.logout, logout),
         ],
       ),
     );

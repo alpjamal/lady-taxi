@@ -37,5 +37,8 @@
     "language":"Язык",
     "night_mode":"Ночной режим",
     "completed":"Завершено >",
-    "cancelled":"Отменено >"
+    "cancelled":"Отменено >",
+    "sign_out":"Выйти",
+    "sure":"Вы покидаете нас?",
+    "cancel": "Отменить"
 }
