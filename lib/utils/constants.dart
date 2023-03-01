@@ -8,30 +8,28 @@ class LadyTaxiColors {
   static const inputBorder = Color(0xFFCCCCCC);
   static const dot = Color(0xFFFFB7D4);
   static const gray = Colors.grey;
+  static const green = Colors.green;
 }
 
 class LadyTaxiTextStyles {
-  static const appbarStyle = TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w600);
-  static const defaultStyle = TextStyle(color: Colors.black, fontSize: 16);
-  static const defaultStyleRed = TextStyle(color: LadyTaxiColors.primary, fontSize: 16);
-  static const defaultStyleRedBold =
-      TextStyle(color: LadyTaxiColors.primary, fontSize: 16, fontWeight: FontWeight.bold);
+  static const appbarStyle = TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w600);
+  static const defaultStyle = TextStyle(fontSize: 16, color: Colors.black);
+  static const defaultStyleRed = TextStyle(fontSize: 16, color: LadyTaxiColors.primary);
+  static const defaultStyleRedBold = TextStyle(fontSize: 16, color: LadyTaxiColors.primary, fontWeight: FontWeight.bold);
   static const onboardingInfo = TextStyle(fontSize: 20, color: Colors.black);
   static const onboardingInfoRed = TextStyle(fontSize: 20, color: LadyTaxiColors.primary);
   static const numpad = TextStyle(fontSize: 22, fontWeight: FontWeight.bold);
-  static const repeatBtn = TextStyle(
-    fontSize: 13,
-    color: Colors.blue,
-    fontFamily: 'Poppins',
-    decoration: TextDecoration.underline,
-  );
-  static const address = TextStyle(fontSize: 20, fontFamily: 'Poppins', fontWeight: FontWeight.bold, color: Colors.black);
   static const hintText = TextStyle(fontSize: 24, color: LadyTaxiColors.gray);
-  static const userName =
-      TextStyle(fontSize: 20, fontFamily: 'Poppins', color: Colors.white, fontWeight: FontWeight.bold);
-  static const userContact = TextStyle(fontSize: 14, fontFamily: 'Poppins', color: Colors.white);
-  static const panelAddresTitle = TextStyle(fontSize: 16, fontFamily: 'Poppins', fontWeight: FontWeight.bold);
+  static const repeatBtn = TextStyle(fontSize: 13, fontFamily: 'Poppins', color: Colors.blue, decoration: TextDecoration.underline);
   static const panelAddresSubtitle = TextStyle(fontSize: 12, fontFamily: 'Poppins');
+  static const userContact = TextStyle(fontSize: 14, fontFamily: 'Poppins', color: Colors.white);
+  static const panelAddresTitle = TextStyle(fontSize: 16, fontFamily: 'Poppins');
+  static const panelAddresTitleBold = TextStyle(fontSize: 16, fontFamily: 'Poppins', fontWeight: FontWeight.bold);
+  static const address = TextStyle(fontSize: 20, fontFamily: 'Poppins', color: Colors.black, fontWeight: FontWeight.bold);
+  static const userName = TextStyle(fontSize: 20, fontFamily: 'Poppins', color: Colors.white, fontWeight: FontWeight.bold);
+  static const hisPay = TextStyle(fontSize: 16, fontFamily: 'Poppins', fontWeight: FontWeight.bold);
+  static const hisPayBtn = TextStyle(fontSize: 16, fontFamily: 'Poppins', color: Colors.green);
+  static const hisPayBtnErr = TextStyle(fontSize: 16, fontFamily: 'Poppins', color: Colors.red);
 }
 
 class LadyTaxiRadiuses {

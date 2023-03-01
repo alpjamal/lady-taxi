@@ -21,7 +21,7 @@ class AddressInfoPanel extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: const [
-              LocaleText('distance', style: LadyTaxiTextStyles.panelAddresTitle),
+              LocaleText('distance', style: LadyTaxiTextStyles.panelAddresTitleBold),
               Text('6.5 km', style: LadyTaxiTextStyles.panelAddresSubtitle),
             ],
           ),
@@ -36,7 +36,7 @@ class AddressInfoPanel extends StatelessWidget {
                       const SizedBox(height: double.infinity, child: Icon(Icons.adjust, size: 30, color: Colors.green)),
                   style: ListTileStyle.drawer,
                   contentPadding: const EdgeInsets.all(0),
-                  title: const Text('Chilonzor dahasi 13', style: LadyTaxiTextStyles.panelAddresTitle),
+                  title: const Text('Chilonzor dahasi 13', style: LadyTaxiTextStyles.panelAddresTitleBold),
                   subtitle:
                       Text('Qatortol, Rahyon19', style: LadyTaxiTextStyles.panelAddresSubtitle.copyWith(height: 2)),
                   trailing: trailingIcon,
@@ -47,7 +47,7 @@ class AddressInfoPanel extends StatelessWidget {
                       child: Icon(Icons.location_on_rounded, size: 30, color: LadyTaxiColors.primary)),
                   style: ListTileStyle.drawer,
                   contentPadding: const EdgeInsets.all(0),
-                  title: const Text('Chilonzor dahasi 13', style: LadyTaxiTextStyles.panelAddresTitle),
+                  title: const Text('Chilonzor dahasi 13', style: LadyTaxiTextStyles.panelAddresTitleBold),
                   subtitle:
                       Text('Qatortol, Rahyon19', style: LadyTaxiTextStyles.panelAddresSubtitle.copyWith(height: 2)),
                   trailing: trailingIcon,
@@ -63,8 +63,9 @@ class AddressInfoPanel extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const LocaleText('payment', style: LadyTaxiTextStyles.panelAddresTitle),
-              Text('14 000 sum', style: LadyTaxiTextStyles.panelAddresTitle.copyWith(color: LadyTaxiColors.primary)),
+              const LocaleText('payment', style: LadyTaxiTextStyles.panelAddresTitleBold),
+              Text('14 000 sum',
+                  style: LadyTaxiTextStyles.panelAddresTitleBold.copyWith(color: LadyTaxiColors.primary)),
             ],
           ),
         ),

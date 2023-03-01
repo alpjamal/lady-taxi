@@ -17,9 +17,9 @@ class AddressEnteringPanel extends StatelessWidget {
       leading: const SizedBox(height: double.infinity, child: Icon(Icons.access_time, size: 28)),
       style: ListTileStyle.drawer,
       contentPadding: const EdgeInsets.all(0),
-      title: Text(title, style: LadyTaxiTextStyles.panelAddresTitle),
+      title: Text(title, style: LadyTaxiTextStyles.panelAddresTitleBold),
       subtitle: Text(subtitle, style: LadyTaxiTextStyles.panelAddresSubtitle.copyWith(height: 2.5)),
-      trailing: Text('$distance km', style: LadyTaxiTextStyles.panelAddresTitle),
+      trailing: Text('$distance km', style: LadyTaxiTextStyles.panelAddresTitleBold),
     );
   }
 
@@ -84,7 +84,7 @@ class AddressEnteringPanel extends StatelessWidget {
         ListTile(
           leading: Image.asset('assets/icons/bookmark.png', color: LadyTaxiColors.primary, cacheWidth: 22),
           contentPadding: const EdgeInsets.all(0),
-          title: const LocaleText('save_location', style: LadyTaxiTextStyles.panelAddresTitle),
+          title: const LocaleText('save_location', style: LadyTaxiTextStyles.panelAddresTitleBold),
           trailing: const Icon(Icons.arrow_forward_ios_rounded),
         ),
         SizedBox(

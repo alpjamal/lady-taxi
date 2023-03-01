@@ -1,20 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_locales/flutter_locales.dart';
+import 'package:lady_taxi/ui/screens/history_screen.dart';
 
 import '/utils/constants.dart';
+import '../../setting_screen.dart';
+import '../../profile_data_screen.dart';
 
 class UserDrawer extends StatelessWidget {
   const UserDrawer({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
       child: Column(
         children: [
           _header(),
-          _listTile('profile', Icons.account_circle),
-          _listTile('history', Icons.history),
-          _listTile('settings', Icons.settings),
-          _listTile('logout', Icons.logout),
+          _listTile('profile', Icons.account_circle, () {
+            Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => const ProfileDataScreen()));
+          }),
+          _listTile('history', Icons.history, () {
+            Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => const HistoryScreen()));
+          }),
+          _listTile('settings', Icons.settings, () {
+            Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => const SettingsScreen()));
+          }),
+          _listTile('logout', Icons.logout, () {
+            // Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => const ProfileSettingsScreen()));
+          }),
         ],
       ),
     );
@@ -61,12 +73,13 @@ class UserDrawer extends StatelessWidget {
     );
   }
 
-  _listTile(String title, IconData icon) {
+  _listTile(String title, IconData icon, Function() func) {
     return ListTile(
       title: LocaleText(title, style: LadyTaxiTextStyles.defaultStyle),
       leading: Icon(icon, size: 30, color: LadyTaxiColors.gray),
       contentPadding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
       horizontalTitleGap: 0,
+      onTap: func,
     );
   }
 }

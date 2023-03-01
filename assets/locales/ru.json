@@ -30,5 +30,12 @@
     "hello":"Привет ",
     "save_location":"Сохранить местоположение",
     "distance":"Расстояние",
-    "payment":"Плата за проезд"
+    "payment":"Плата за проезд",
+    "save":"Сохранить",
+    "notifications":"Уведомления",
+    "security":"Безопасность",
+    "language":"Язык",
+    "night_mode":"Ночной режим",
+    "completed":"Завершено >",
+    "cancelled":"Отменено >"
 }

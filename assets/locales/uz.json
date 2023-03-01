@@ -30,5 +30,12 @@
     "hello":"Salom ",
     "save_location":"Joyi saqlash",
     "distance":"Masofa",
-    "payment":"Yo'l haqqi"
+    "payment":"Yo'l haqqi",
+    "save":"Saqlash",
+    "notifications":"Bildirishnomalar",
+    "security":"Xavfsiz",
+    "language":"Til",
+    "night_mode":"Tunggi rejim",
+    "completed":"Bajarild >",
+    "cancelled":"Bekor qilindi >"
 }

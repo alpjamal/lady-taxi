@@ -30,5 +30,12 @@
     "hello":"Hello ",
     "save_location":"Save location",
     "distance":"Distance",
-    "payment":"Payment"
+    "payment":"Payment",
+    "save":"Save",
+    "notifications":"Notifications",
+    "security":"Security",
+    "language":"Language",
+    "night_mode":"Night mode",
+    "completed":"Completed >",
+    "cancelled":"Cancelled >"
 }
