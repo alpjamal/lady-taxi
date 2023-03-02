@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
+import 'package:geolocator/geolocator.dart';
 
 import '/utils/constants.dart';
 import './home_screen_widgets/congratulation_dialog.dart';
@@ -28,49 +29,68 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final Completer<GoogleMapController> _controller = Completer<GoogleMapController>();
 
-  final _camPosistion = const CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 14.4746,
-  );
-
-  final _kLake = const CameraPosition(
-    bearing: 192.8334901395799,
-    target: LatLng(37.43296265331129, -122.08832357078792),
-    tilt: 59.440717697143555,
-    zoom: 19.151926040649414,
-  );
-
-  _goToTheLake() async {
-    final GoogleMapController controller = await _controller.future;
-    controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
-  }
+  final _initialCamPosition = const CameraPosition(target: LatLng(41.270418, 69.200713), zoom: 15);
 
   @override
   void initState() {
     super.initState();
     fabBottomPadding = _panelMaxHeight + 20;
     Future.delayed(LTDuration.alertDelay, () => _showDialog(context));
+
+    Future.delayed(const Duration(seconds: 0), () async {
+      await Geolocator.requestPermission();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      drawer: UserDrawer(_logOut),
+      body: Stack(
+        alignment: Alignment.topCenter,
+        children: [
+          SlidingUpPanel(
+            controller: _panelController,
+            borderRadius: const BorderRadius.only(topLeft: LTRadius.bottomSheet, topRight: LTRadius.bottomSheet),
+            maxHeight: _panelMaxHeight,
+            minHeight: 0,
+            defaultPanelState: PanelState.OPEN,
+            panelBuilder: (sc) => _panelBuilder(sc),
+            onPanelSlide: (position) => setState(() => fabBottomPadding = position * _panelMaxHeight + 20),
+            body: GoogleMap(
+              initialCameraPosition: _initialCamPosition,
+              mapType: MapType.normal,
+              onMapCreated: (GoogleMapController controller) {
+                _controller.complete(controller);
+              },
+            ),
+          ),
+          Positioned(top: 0, left: 0, child: SafeArea(child: MenuButton(onTap: _openDrawer))),
+          Positioned(
+            right: 20,
+            bottom: fabBottomPadding!,
+            child: FloatingActionButton(
+              onPressed: _goToTheLocation,
+              child: Image.asset(LTIconName.getLocation, color: LTColors.primary, cacheHeight: 22),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  _goToTheLocation() async {
+    Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.medium);
+    var lat = position.latitude;
+    var lon = position.longitude;
+
+    final GoogleMapController controller = await _controller.future;
+    // var newCamPosition = CameraPosition(target: LatLng(lat, lon), bearing: 150, tilt: 60, zoom: 19.15);
+    var newCamPosition = CameraPosition(target: LatLng(lat, lon), zoom: 19.15);
+    controller.animateCamera(CameraUpdate.newCameraPosition(newCamPosition));
   }
 
   void _openDrawer(ctx) => Scaffold.of(ctx).openDrawer();
-
-  _showDialog(ctx) {
-    showDialog(
-      context: ctx,
-      builder: (ctx) {
-        _timer = Timer(LTDuration.alertDuration, () => Navigator.of(context).pop());
-        return const CongratulationDialog();
-      },
-    ).then((val) => _timer!.cancel());
-  }
-
-  _logOut() {
-    showModalBottomSheet(
-      backgroundColor: Colors.transparent,
-      context: context,
-      builder: (ctx) => SignOutPanel(context: context),
-    );
-  }
 
   _togglePanel(double height) {
     _panelController.close().then((value) {
@@ -90,37 +110,21 @@ class _HomeScreenState extends State<HomeScreen> {
     return AddressInfoPanel(func: () => _togglePanel(LTPanelHeight.location));
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: UserDrawer(_logOut),
-      body: Stack(
-        alignment: Alignment.topCenter,
-        children: [
-          SlidingUpPanel(
-            controller: _panelController,
-            borderRadius: const BorderRadius.only(topLeft: LTRadius.bottomSheet, topRight: LTRadius.bottomSheet),
-            maxHeight: _panelMaxHeight,
-            minHeight: 0,
-            defaultPanelState: PanelState.OPEN,
-            panelBuilder: (sc) => _panelBuilder(sc),
-            onPanelSlide: (position) => setState(() => fabBottomPadding = position * _panelMaxHeight + 20),
-            body: GoogleMap(
-              initialCameraPosition: _camPosistion,
-              mapType: MapType.hybrid,
-            ),
-          ),
-          Positioned(top: 0, left: 0, child: SafeArea(child: MenuButton(onTap: _openDrawer))),
-          Positioned(
-            right: 20,
-            bottom: fabBottomPadding!,
-            child: FloatingActionButton(
-              onPressed: _goToTheLake,
-              child: Image.asset(LTIconName.getLocation, color: LTColors.primary, cacheHeight: 22),
-            ),
-          ),
-        ],
-      ),
+  _showDialog(ctx) {
+    showDialog(
+      context: ctx,
+      builder: (ctx) {
+        _timer = Timer(LTDuration.alertDuration, () => Navigator.of(context).pop());
+        return const CongratulationDialog();
+      },
+    ).then((val) => _timer!.cancel());
+  }
+
+  _logOut() {
+    showModalBottomSheet(
+      backgroundColor: Colors.transparent,
+      context: context,
+      builder: (ctx) => SignOutPanel(context: context),
     );
   }
 }
