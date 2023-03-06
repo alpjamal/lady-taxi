@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_locales/flutter_locales.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import './registry_screen.dart';
+import './registry_screen/registry_screen.dart';
 import '../widgets/onboarding_page_widget.dart';
 import '/../utils/constants.dart';
 

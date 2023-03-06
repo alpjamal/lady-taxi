@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_locales/flutter_locales.dart';
 
-import './home_screen/home_screen.dart';
-import '../widgets/create_profile_widgets.dart';
+import '../home_screen/home_screen.dart';
+import '../create_profile_screen/create_profile_widgest/input_field.dart';
+import 'create_profile_widgest/profile_photo.dart';
 
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen(this.phoneNum, {super.key});
+class CreateProfileScreen extends StatelessWidget {
+  const CreateProfileScreen(this.phoneNum, {super.key});
   final String phoneNum;
 
   @override
@@ -21,7 +22,7 @@ class ProfileScreen extends StatelessWidget {
                 children: [
                   const ProfilePhoto(),
                   InputField(context.localeString('name')),
-                  InputField(context.localeString('birthdate')),
+                  InputField(context.localeString('gender')),
                   InputField(phoneNum, enabled: false),
                   const SizedBox(height: 200),
                   Padding(
@@ -29,7 +30,7 @@ class ProfileScreen extends StatelessWidget {
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.of(context)
-                            .pushReplacement(MaterialPageRoute(builder: (context) =>  const HomeScreen()));
+                            .pushReplacement(MaterialPageRoute(builder: (context) => const HomeScreen()));
                       },
                       child: const LocaleText('continue'),
                     ),
