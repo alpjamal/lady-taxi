@@ -45,11 +45,12 @@ class LTRadius {
 }
 
 class LTDuration {
-  static const message = Duration(seconds: 119);
+  static const message = Duration(seconds: 120);
   static const pageView = Duration(milliseconds: 300);
   static const alertDuration = Duration(seconds: 5);
   static const alertDelay = Duration(milliseconds: 20);
   static const panelOpen = Duration(milliseconds: 200);
+  static const request = Duration(seconds: 30);
 }
 
 class LTIconName {
@@ -75,4 +76,8 @@ class LTPanelHeight {
   static const userAdresses = 350.0;
   static const enterAddress = 550.0;
   static const addressInfo = 360.0;
+}
+
+class LTUrl {
+  static const String baseUrl = "http://3.75.239.91:9000/v1";
 }

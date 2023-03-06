@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_locales/flutter_locales.dart';
+import 'package:lady_taxi/data/BLoC/auth/auth_bloc.dart';
 
 import '/utils/constants.dart';
 
 class RegistryNumberPage extends StatelessWidget {
-  const RegistryNumberPage(this.textEditingController, this.buttonDisabled, this.myFunc, {super.key});
+  const RegistryNumberPage(this.textEditingController, this.buttonDisabled, {super.key});
   final TextEditingController textEditingController;
   final bool buttonDisabled;
-  final Function() myFunc;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +38,12 @@ class RegistryNumberPage extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
           child: ElevatedButton(
-            onPressed: buttonDisabled ? null : myFunc,
+            onPressed: buttonDisabled
+                ? null
+                : () {
+                    var userInputNumber = textEditingController.text.replaceAll(' ', '').replaceAll('+', '');
+                    context.read<AuthBloc>().add(GetOtpCodeEvent(userInputNumber));
+                  },
             child: const LocaleText('continue'),
           ),
         ),

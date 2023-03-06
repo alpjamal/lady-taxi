@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_locales/flutter_locales.dart';
+import 'package:lady_taxi/data/BLoC/auth/auth_bloc.dart';
 import 'package:otp_text_field/otp_text_field.dart';
 import 'package:otp_text_field/style.dart';
 
@@ -10,21 +12,21 @@ class RegistryConfirmPage extends StatelessWidget {
     this.userNumber,
     this.time,
     this.buttonDisabled,
-    this.myFunc,
     this.repeat,
-    this.otpController, {
+    this.otpController,
+    this.userOtpInput, {
     super.key,
   });
 
   final String userNumber;
   final String time;
   final bool buttonDisabled;
-  final Function() myFunc;
   final Function() repeat;
   final OtpFieldController otpController;
-
+  final String userOtpInput;
   @override
   Widget build(BuildContext context) {
+    String userInputNumber = userNumber.replaceAll(' ', '').replaceAll('+', '');
     return Column(
       children: [
         RichText(
@@ -55,7 +57,10 @@ class RegistryConfirmPage extends StatelessWidget {
           ),
         ),
         TextButton(
-          onPressed: repeat,
+          onPressed: () {
+            context.read<AuthBloc>().add(GetOtpCodeEvent(userInputNumber));
+            repeat();
+          },
           child: const Padding(
             padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
             child: LocaleText('registryrepeat', style: LTTextStyle.repeatBtn),
@@ -65,7 +70,9 @@ class RegistryConfirmPage extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
           child: ElevatedButton(
-            onPressed: buttonDisabled ? null : myFunc,
+            onPressed: buttonDisabled
+                ? null
+                : () => context.read<AuthBloc>().add(ConfirmOtpEvent(userInputNumber, userOtpInput)),
             child: const LocaleText('continue'),
           ),
         ),
