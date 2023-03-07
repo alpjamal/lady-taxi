@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_locales/flutter_locales.dart';
 
-
 import './data/BLoC/auth/auth_bloc.dart';
 import './utils/theme.dart';
-import 'ui/screens/registry_screen/registry_screen.dart';
+import 'ui/screens/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,9 +26,7 @@ class MyApp extends StatelessWidget {
           locale: locale,
           debugShowCheckedModeBanner: false,
           theme: LadyTaxiTheme().themeData,
-          // home: const LadyTaxiSplashScreen(),
-          home: const RegistryScreen(),
-          // home: const HomeScreen(),
+          home: const LadyTaxiSplashScreen(),
         ),
       ),
     );

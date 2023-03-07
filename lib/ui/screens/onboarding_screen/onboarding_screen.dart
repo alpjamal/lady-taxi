@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_locales/flutter_locales.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import './registry_screen/registry_screen.dart';
-import '../widgets/onboarding_page_widget.dart';
+import '../registry_screen/registry_screen.dart';
+import 'onboarding_page_widget.dart';
 import '/../utils/constants.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -16,12 +17,6 @@ class OnboardingScreen extends StatefulWidget {
 class _OnboardingScreenState extends State<OnboardingScreen> {
   final _pageController = PageController();
   bool isLast = false;
-
-  _btnHandle() {
-    isLast
-        ? Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) => const RegistryScreen()))
-        : _pageController.nextPage(duration: LTDuration.pageView, curve: Curves.fastOutSlowIn);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,5 +74,20 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         ),
       ),
     );
+  }
+
+  _btnHandle() async {
+    if (isLast) {
+      await _setData();
+      if (mounted) {}
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) => const RegistryScreen()));
+    } else {
+      _pageController.nextPage(duration: LTDuration.pageView, curve: Curves.fastOutSlowIn);
+    }
+  }
+
+  Future _setData() async {
+    var prefs = await SharedPreferences.getInstance();
+    prefs.setBool('isInitial', false);
   }
 }

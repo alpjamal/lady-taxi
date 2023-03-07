@@ -58,7 +58,6 @@ class _RegistryScreenState extends State<RegistryScreen> {
                   _repeat();
                   buttonDisabled = false;
                   _pageController.previousPage(duration: LTDuration.pageView, curve: Curves.fastOutSlowIn);
-
                 },
                 icon: const Icon(Icons.arrow_back_ios)),
       ),
@@ -150,6 +149,7 @@ class _RegistryScreenState extends State<RegistryScreen> {
 
   void _startTimer() {
     setState(() => buttonDisabled = true);
+    _timer != null ? _timer!.cancel() : null;
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (_duration == 0) {
         setState(() => buttonDisabled = true);
@@ -162,12 +162,10 @@ class _RegistryScreenState extends State<RegistryScreen> {
   }
 
   _repeat() {
-    setState(() => buttonDisabled = true);
+    buttonDisabled = true;
     userOtpInput = '';
     _otpController.clear();
-    _timer!.cancel();
     _duration = LTDuration.message.inSeconds;
-    onConfirmPage ? _startTimer() : null;
   }
 
   _inkWellOnTap(int index) => onConfirmPage ? _inkWellOnConfirmPage(index) : _inkWellOnNumPage(index);
