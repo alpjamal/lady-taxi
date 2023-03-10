@@ -12,42 +12,46 @@ class RegistryNumberPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        LocaleText(
-          'enteranumber',
-          textAlign: TextAlign.center,
-          style: LTTextStyle.defaultStyle.copyWith(height: 1.8, fontFamily: 'Poppins'),
-        ),
-        const SizedBox(height: 60),
-        Row(children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(35, 0, 0, 5),
-            child: LocaleText('phoneinputlabel', style: LTTextStyle.defaultStyle.copyWith(fontSize: 12)),
-          ),
-        ]),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-          child: TextField(
-            keyboardType: TextInputType.none,
-            controller: textEditingController,
-            style: LTTextStyle.defaultStyle.copyWith(fontSize: 18, fontFamily: 'Inter'),
-          ),
-        ),
-        const Spacer(),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-          child: ElevatedButton(
-            onPressed: buttonDisabled
-                ? null
-                : () {
-                    var userInputNumber = textEditingController.text.replaceAll(' ', '').replaceAll('+', '');
-                    context.read<AuthBloc>().add(GetOtpCodeEvent(userInputNumber));
-                  },
-            child: const LocaleText('continue'),
-          ),
-        ),
-      ],
+    String userInputNumber = textEditingController.text.replaceAll(' ', '').replaceAll('+', '');
+    return BlocBuilder<AuthBloc, AuthState>(
+      builder: (context, state) {
+        return Column(
+          children: [
+            LocaleText(
+              'enteranumber',
+              textAlign: TextAlign.center,
+              style: LTTextStyle.defaultStyle.copyWith(height: 1.8, fontFamily: 'Poppins'),
+            ),
+            const SizedBox(height: 60),
+            Row(children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(35, 0, 0, 5),
+                child: LocaleText('phoneinputlabel', style: LTTextStyle.defaultStyle.copyWith(fontSize: 12)),
+              ),
+            ]),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+              child: TextField(
+                keyboardType: TextInputType.none,
+                controller: textEditingController,
+                style: LTTextStyle.defaultStyle.copyWith(fontSize: 18, fontFamily: 'Inter'),
+              ),
+            ),
+            const Spacer(),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+              child: ElevatedButton(
+                onPressed: buttonDisabled
+                    ? null
+                    : () => context.read<AuthBloc>().add(GetOtpCodeEvent(userInputNumber)),
+                child: state is LoadingState
+                    ? const CircularProgressIndicator(color: Colors.white)
+                    : const LocaleText('continue'),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }

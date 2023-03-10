@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_locales/flutter_locales.dart';
 import 'package:otp_text_field/otp_text_field.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '/../data/BLoC/auth/auth_bloc.dart';
 import '/utils/constants.dart';
@@ -55,14 +56,14 @@ class _RegistryScreenState extends State<RegistryScreen> {
             : IconButton(
                 onPressed: () {
                   onConfirmPage = false;
-                  _repeat();
-                  buttonDisabled = false;
+                  _refresh();
                   _pageController.previousPage(duration: LTDuration.pageView, curve: Curves.fastOutSlowIn);
+                  setState(() => buttonDisabled = false);
                 },
                 icon: const Icon(Icons.arrow_back_ios)),
       ),
       body: BlocListener<AuthBloc, AuthState>(
-        listener: (context, state) => _eventHandle(context, state),
+        listener: (context, state) => _listener(context, state),
         child: SafeArea(
           child: Column(
             children: [
@@ -77,10 +78,11 @@ class _RegistryScreenState extends State<RegistryScreen> {
                         physics: const NeverScrollableScrollPhysics(),
                         children: [
                           RegistryNumberPage(_textController, buttonDisabled),
-                          RegistryConfirmPage(
-                              userInputNumber, _time!, buttonDisabled, _repeat, _otpController, userOtpInput),
+                          RegistryConfirmPage(userInputNumber, _time!, buttonDisabled, _otpController, userOtpInput),
                         ],
-                        onPageChanged: (value) => value == 1 ? _otpController.setFocus(0) : null,
+                        onPageChanged: (value) => onConfirmPage
+                            ? Future.delayed(LTDuration.pageView, () => _otpController.setFocus(0))
+                            : null,
                       ),
                     ),
                   ],
@@ -121,7 +123,7 @@ class _RegistryScreenState extends State<RegistryScreen> {
     );
   }
 
-  _eventHandle(BuildContext ctx, AuthState state) {
+  _listener(BuildContext ctx, AuthState state) async {
     if (state is GetOtpCodeSuccessState) {
       _startTimer();
       if (!onConfirmPage) {
@@ -129,31 +131,36 @@ class _RegistryScreenState extends State<RegistryScreen> {
         onConfirmPage = true;
       }
     } else if (state is VerifyOtpCodeSuccessState) {
-      if (state.userInfo.isActive) {
+      var prefs = await SharedPreferences.getInstance();
+      prefs.setString(LtPrefs.accessToken, state.userInfo.accessToken);
+      if (state.userInfo.id.isNotEmpty) {
+        if (mounted) {}
         Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const HomeScreen()));
       } else {
+        if (mounted) {}
         Navigator.of(context)
             .pushReplacement(MaterialPageRoute(builder: (context) => CreateProfileScreen(userInputNumber)));
       }
     } else if (state is AuthErrorState) {
-      _showErrorSnackbar('${state.error.response?.data['message']}');
+      _showErrorSnackbar(message: '${state.error.response?.data['message']}');
     }
   }
 
-  void _updateUserInput() {
-    _textController.text = userInputNumber;
-    _textController.selection = TextSelection.fromPosition(TextPosition(offset: userInputNumber.length));
-    userInputNumber.length == 17 ? buttonDisabled = false : buttonDisabled = true;
-    setState(() {});
+  _showErrorSnackbar({required String message}) {
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message, style: LTTextStyle.snackErr)));
   }
 
   void _startTimer() {
     setState(() => buttonDisabled = true);
     _timer != null ? _timer!.cancel() : null;
+    onConfirmPage ? _refresh() : null;
+    buttonDisabled = true;
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (_duration == 0) {
         setState(() => buttonDisabled = true);
         timer.cancel();
+        _showErrorSnackbar(message: 'The time is out!');
       } else {
         setState(() => _duration--);
       }
@@ -161,21 +168,23 @@ class _RegistryScreenState extends State<RegistryScreen> {
     });
   }
 
-  _repeat() {
+  _refresh() {
+    _timer!.cancel();
     buttonDisabled = true;
     userOtpInput = '';
     _otpController.clear();
     _duration = LTDuration.message.inSeconds;
+    _formatTime(_duration);
   }
 
-  _inkWellOnTap(int index) => onConfirmPage ? _inkWellOnConfirmPage(index) : _inkWellOnNumPage(index);
-
-  _inkWellOnNumPage(int index) {
+  _inkWellOnTap(int index) {
     var char = LTVar.nums[index];
+    onConfirmPage ? _inkWellOnConfirmPage(char) : _inkWellOnNumPage(char);
+  }
+
+  _inkWellOnNumPage(String char) {
     if (char == '.' && userInputNumber.length > 5) {
-      var list = userInputNumber.split('');
-      list.removeLast();
-      userInputNumber = list.join();
+      userInputNumber = userInputNumber.substring(0, userInputNumber.length - 1);
       if (userInputNumber.length > 7) userInputNumber = userInputNumber.trimRight();
     } else if (char != '*' && char != '.' && userInputNumber.length < 17) {
       if (userInputNumber.length == 7 || userInputNumber.length == 11 || userInputNumber.length == 14) {
@@ -183,11 +192,14 @@ class _RegistryScreenState extends State<RegistryScreen> {
       }
       userInputNumber += char;
     }
-    _updateUserInput();
+
+    _textController.text = userInputNumber;
+    _textController.selection = TextSelection.fromPosition(TextPosition(offset: userInputNumber.length));
+    userInputNumber.length == 17 ? buttonDisabled = false : buttonDisabled = true;
+    setState(() {});
   }
 
-  _inkWellOnConfirmPage(int index) {
-    var char = LTVar.nums[index];
+  _inkWellOnConfirmPage(String char) {
     int editIndex = userOtpInput.length;
     if (_duration > 0) {
       if (char == '.') {
@@ -205,21 +217,16 @@ class _RegistryScreenState extends State<RegistryScreen> {
           userOtpInput += char;
         }
       }
+      userOtpInput.length == 4 ? buttonDisabled = false : buttonDisabled = true;
+      setState(() {});
     } else {
-      _showErrorSnackbar('The time is out!');
+      _showErrorSnackbar(message: 'The time is out!');
     }
-    userOtpInput.length == 4 ? buttonDisabled = false : buttonDisabled = true;
-    setState(() {});
   }
 
   _formatTime(int duration) {
     _time = [Duration(seconds: duration).inMinutes, Duration(seconds: duration).inSeconds]
         .map((seg) => seg.remainder(60).toString().padLeft(2, '0'))
         .join(' : ');
-  }
-
-  _showErrorSnackbar(String message) {
-    ScaffoldMessenger.of(context).hideCurrentSnackBar();
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message, style: LTTextStyle.hisPayBtnErr)));
   }
 }

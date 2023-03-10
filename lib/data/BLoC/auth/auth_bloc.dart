@@ -11,10 +11,9 @@ part 'auth_state.dart';
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthRepo _repo = AuthRepo();
 
-  AuthBloc() : super(AuthInitial()) {
-    //
+  AuthBloc() : super(AuthInitialState()) {
     on<GetOtpCodeEvent>((event, emit) async {
-      emit(AuthInitial());
+      emit(LoadingState());
       try {
         await _repo.getOtpCode(event.phoneNumber);
         emit(GetOtpCodeSuccessState());
@@ -24,10 +23,21 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     });
 
     on<ConfirmOtpEvent>((event, emit) async {
+      emit(LoadingState());
       try {
         final UserInfoModel response =
             await _repo.confirmOtpCode(phoneNumber: event.phoneNumber, otpCode: event.otpCode);
         emit(VerifyOtpCodeSuccessState(response));
+      } on DioError catch (error) {
+        emit(AuthErrorState(error));
+      }
+    });
+
+    on<CreateProfileEvent>((event, emit) async {
+      emit(LoadingState());
+      try {
+        await _repo.createProfile();
+        emit(CreateProfileSuccessState());
       } on DioError catch (error) {
         emit(AuthErrorState(error));
       }

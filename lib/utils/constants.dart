@@ -33,6 +33,7 @@ class LTTextStyle {
   static const hisPay = TextStyle(fontSize: 16, fontFamily: 'Poppins', fontWeight: FontWeight.bold);
   static const hisPayBtn = TextStyle(fontSize: 16, fontFamily: 'Poppins', color: Colors.green);
   static const hisPayBtnErr = TextStyle(fontSize: 16, fontFamily: 'Poppins', color: Colors.red);
+  static const snackErr = TextStyle(fontSize: 16, fontFamily: 'Poppins', color: Colors.white);
 }
 
 class LTRadius {
@@ -42,6 +43,7 @@ class LTRadius {
   static const profilePhoto = Radius.circular(50);
   static const menuButton = Radius.circular(8);
   static const bottomSheet = Radius.circular(30);
+  static const snackBar = Radius.circular(12);
 }
 
 class LTDuration {
@@ -80,4 +82,10 @@ class LTPanelHeight {
 
 class LTUrl {
   static const String baseUrl = "http://3.75.239.91:9000/v1";
+}
+
+class LtPrefs {
+  static const String name = 'name';
+  static const String gender = 'gender';
+  static const String accessToken = 'access_token';
 }

@@ -2,7 +2,7 @@ part of 'auth_bloc.dart';
 
 abstract class AuthState extends Equatable {}
 
-class AuthInitial extends AuthState {
+class AuthInitialState extends AuthState {
   @override
   List<Object?> get props => [];
 }
@@ -26,4 +26,17 @@ class VerifyOtpCodeSuccessState extends AuthState {
 
   @override
   List<Object?> get props => [userInfo];
+}
+
+class CreateProfileSuccessState extends AuthState {
+  CreateProfileSuccessState();
+
+  @override
+  List<Object?> get props => [];
+}
+
+class LoadingState extends AuthState {
+  LoadingState();
+  @override
+  List<Object?> get props => [];
 }

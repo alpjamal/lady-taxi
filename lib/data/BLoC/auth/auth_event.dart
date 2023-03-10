@@ -18,3 +18,10 @@ class ConfirmOtpEvent extends AuthEvent {
   @override
   List<Object?> get props => [phoneNumber, otpCode];
 }
+
+class CreateProfileEvent extends AuthEvent {
+  CreateProfileEvent();
+
+  @override
+  List<Object?> get props => [];
+}

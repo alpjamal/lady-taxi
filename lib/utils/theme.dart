@@ -43,5 +43,12 @@ class LadyTaxiTheme {
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: Colors.white,
     ),
+    snackBarTheme: const SnackBarThemeData(
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: LTColors.primary,
+      showCloseIcon: true,
+      closeIconColor: Colors.white,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(LTRadius.snackBar)),
+    ),
   );
 }
