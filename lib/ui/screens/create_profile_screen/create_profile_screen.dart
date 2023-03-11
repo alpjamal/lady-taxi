@@ -7,30 +7,19 @@ import '/utils/constants.dart';
 import '/data/BLoC/auth/auth_bloc.dart';
 import '../create_profile_screen/create_profile_widgest/input_field.dart';
 import '../home_screen/home_screen.dart';
-import './create_profile_widgest/profile_photo.dart';
+import 'create_profile_widgest/dropdown_menu.dart';
+import 'create_profile_widgest/profile_photo.dart';
 
-class CreateProfileScreen extends StatefulWidget {
+class CreateProfileScreen extends StatelessWidget {
   const CreateProfileScreen(this.phoneNum, {super.key});
   final String phoneNum;
-  @override
-  State<CreateProfileScreen> createState() => _CreateProfileScreenState();
-}
-
-class _CreateProfileScreenState extends State<CreateProfileScreen> {
-  String _selectedGender = 'ayol';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const LocaleText('create')),
       body: BlocConsumer<AuthBloc, AuthState>(
-        listener: (context, state) {
-          if (state is CreateProfileSuccessState) {
-            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const HomeScreen()));
-          } else if (state is AuthErrorState) {
-            _showErrorSnackbar(state.error.message ?? 'Bad Response');
-          }
-        },
+        listener: (context, state) => _listener(context, state),
         builder: (context, state) {
           return SafeArea(
             child: Padding(
@@ -41,30 +30,14 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                     children: [
                       const ProfilePhoto(),
                       InputField(context.localeString('name')),
-                      Container(
-                        margin: const EdgeInsets.only(top: 20),
-                        padding: const EdgeInsets.only(right: 10, left: 20),
-                        decoration: const BoxDecoration(
-                            color: LTColors.inputFill, borderRadius: BorderRadius.all(LTRadius.input)),
-                        child: DropdownButton(
-                          underline: const SizedBox(),
-                          style: LTTextStyle.defaultStyle,
-                          value: _selectedGender,
-                          onChanged: (value) => _setGender(value ?? _selectedGender),
-                          isExpanded: true,
-                          items: const [
-                            DropdownMenuItem(value: 'ayol', child: Text('Ayol')),
-                            DropdownMenuItem(value: 'erkak', child: Text('Erkak')),
-                          ],
-                        ),
-                      ),
-                      InputField(widget.phoneNum, enabled: false),
+                      const GenderDropDown(),
+                      InputField(phoneNum, enabled: false),
                       const SizedBox(height: 200),
                       Padding(
                         padding: const EdgeInsets.only(top: 20),
                         child: ElevatedButton(
                           onPressed: () => context.read<AuthBloc>().add(CreateProfileEvent()),
-                          child: state is! VerifyOtpCodeSuccessState
+                          child: state is AuthLoadingState
                               ? const CircularProgressIndicator(color: Colors.white)
                               : const LocaleText('continue'),
                         ),
@@ -80,18 +53,21 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
     );
   }
 
-  _showErrorSnackbar(String message) {
-    ScaffoldMessenger.of(context).hideCurrentSnackBar();
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text(message, style: LTTextStyle.hisPayBtnErr),
-      behavior: SnackBarBehavior.floating,
-    ));
+  _listener(ctx, state) async {
+    if (state is CreateProfileSuccessState) {
+      Navigator.of(ctx).pushReplacement(MaterialPageRoute(builder: (context) => HomeScreen()));
+      var prefs = await SharedPreferences.getInstance();
+      prefs.setString(LtPrefs.accessToken, state.token);
+    } else if (state is AuthErrorState) {
+      _showErrorSnackbar(ctx, state.error.message ?? 'Bad Response');
+    }
   }
 
-  Future<void> _setGender(String gender) async {
-    _selectedGender = gender;
-    setState(() {});
-    var prefs = await SharedPreferences.getInstance();
-    prefs.setString(LtPrefs.gender, gender);
+  _showErrorSnackbar(ctx, String message) {
+    ScaffoldMessenger.of(ctx).hideCurrentSnackBar();
+    ScaffoldMessenger.of(ctx).showSnackBar(SnackBar(
+      content: Text(message, style: LTTextStyle.snackErr),
+      behavior: SnackBarBehavior.floating,
+    ));
   }
 }

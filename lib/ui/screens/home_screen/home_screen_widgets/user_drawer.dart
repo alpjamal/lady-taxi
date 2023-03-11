@@ -71,6 +71,17 @@ class UserDrawer extends StatelessWidget {
     );
   }
 
+  _format(String number) {
+    number.split('').insert(3, '');
+    var list = number.split('');
+    list.insert(3, ' ');
+    list.insert(6, ' ');
+    list.insert(10, ' ');
+    list.insert(13, ' ');
+    number = '+ ${list.join()}';
+    return number;
+  }
+
   _listTile(String title, IconData icon, Function() func) {
     return ListTile(
       title: LocaleText(title, style: LTTextStyle.defaultStyle),

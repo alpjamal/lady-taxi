@@ -20,20 +20,20 @@ class AuthRepo {
     return UserInfoModel.fromJson(response.data);
   }
 
-  Future<dynamic> createProfile() async {
+  Future<String> createProfile() async {
     try {
       var prefs = await SharedPreferences.getInstance();
       String userName = prefs.getString(LtPrefs.name)!;
       String userGender = prefs.getString(LtPrefs.gender)!;
       String accessToken = prefs.getString(LtPrefs.accessToken)!;
 
-      await ApiRequest().doPostRequest(
+      final Response response = await ApiRequest().doPostRequest(
         path: '/user/register',
         headers: {'Authorization': accessToken},
         body: {"full_name": userName, "gender": userGender},
       );
-      
-    } catch (e) {
+      return UserInfoModel.fromJson(response.data).accessToken;
+    } catch (error) {
       rethrow;
     }
   }

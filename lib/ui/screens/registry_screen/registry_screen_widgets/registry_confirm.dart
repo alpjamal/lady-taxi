@@ -72,7 +72,7 @@ class RegistryConfirmPage extends StatelessWidget {
                 onPressed: buttonDisabled
                     ? null
                     : () => context.read<AuthBloc>().add(ConfirmOtpEvent(userInputNumber, userOtpInput)),
-                child: state is LoadingState && !buttonDisabled
+                child: state is AuthLoadingState && !buttonDisabled
                     ? const CircularProgressIndicator(color: Colors.white)
                     : const LocaleText('continue'),
               ),

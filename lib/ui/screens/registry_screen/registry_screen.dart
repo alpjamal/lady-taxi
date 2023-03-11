@@ -131,15 +131,12 @@ class _RegistryScreenState extends State<RegistryScreen> {
         onConfirmPage = true;
       }
     } else if (state is VerifyOtpCodeSuccessState) {
-      var prefs = await SharedPreferences.getInstance();
-      prefs.setString(LtPrefs.accessToken, state.userInfo.accessToken);
       if (state.userInfo.id.isNotEmpty) {
-        if (mounted) {}
-        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const HomeScreen()));
+        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomeScreen()));
       } else {
-        if (mounted) {}
-        Navigator.of(context)
-            .pushReplacement(MaterialPageRoute(builder: (context) => CreateProfileScreen(userInputNumber)));
+        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => CreateProfileScreen(userInputNumber)));
+        var prefs = await SharedPreferences.getInstance();
+        prefs.setString(LtPrefs.accessToken, state.userInfo.accessToken);
       }
     } else if (state is AuthErrorState) {
       _showErrorSnackbar(message: '${state.error.response?.data['message']}');

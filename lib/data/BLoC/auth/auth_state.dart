@@ -29,14 +29,15 @@ class VerifyOtpCodeSuccessState extends AuthState {
 }
 
 class CreateProfileSuccessState extends AuthState {
-  CreateProfileSuccessState();
+  CreateProfileSuccessState(this.token);
+  final String token;
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [token];
 }
 
-class LoadingState extends AuthState {
-  LoadingState();
+class AuthLoadingState extends AuthState {
+  AuthLoadingState();
   @override
   List<Object?> get props => [];
 }

@@ -15,8 +15,9 @@ class ApiRequest {
     return response;
   }
 
-  Future<Response> doGetRequest({required String path, Map<String, dynamic>? query}) async {
-    final Response response = await dio.get(path, queryParameters: query);
+  Future<Response> doGetRequest(
+      {required String path, Map<String, dynamic>? headers, Map<String, dynamic>? query}) async {
+    final Response response = await dio.get(path, queryParameters: query, options: Options(headers: headers));
     return response;
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_locales/flutter_locales.dart';
+import 'package:lady_taxi/data/BLoC/bloc/user_bloc.dart';
 
 import './data/BLoC/auth/auth_bloc.dart';
 import './utils/theme.dart';
@@ -18,8 +19,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LocaleBuilder(
-      builder: (locale) => BlocProvider(
-        create: (BuildContext context) => AuthBloc(),
+      builder: (locale) => MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (BuildContext context) => AuthBloc()),
+          BlocProvider(create: (context) => UserBloc()..add(GetUserEvent())),
+        ],
         child: MaterialApp(
           localizationsDelegates: Locales.delegates,
           supportedLocales: Locales.supportedLocales,

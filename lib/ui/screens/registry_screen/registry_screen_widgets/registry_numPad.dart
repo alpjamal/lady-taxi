@@ -41,10 +41,8 @@ class RegistryNumberPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
               child: ElevatedButton(
-                onPressed: buttonDisabled
-                    ? null
-                    : () => context.read<AuthBloc>().add(GetOtpCodeEvent(userInputNumber)),
-                child: state is LoadingState
+                onPressed: buttonDisabled ? null : () => context.read<AuthBloc>().add(GetOtpCodeEvent(userInputNumber)),
+                child: state is AuthLoadingState
                     ? const CircularProgressIndicator(color: Colors.white)
                     : const LocaleText('continue'),
               ),
