@@ -7,14 +7,14 @@ class UserInitialState extends UserState {
   List<Object?> get props => [];
 }
 
-class UserLoadingState extends UserState {
+class GetUserLoadingState extends UserState {
   @override
   List<Object?> get props => [];
 }
 
 class GetUserSuccessState extends UserState {
   GetUserSuccessState(this.userInfo);
-  final ActiveUserInfo userInfo;
+  final UserInfoModel userInfo;
 
   @override
   List<Object?> get props => [userInfo];

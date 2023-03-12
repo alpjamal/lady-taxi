@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_locales/flutter_locales.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '/utils/constants.dart';
@@ -25,8 +26,8 @@ class _GenderDropDownState extends State<GenderDropDown> {
         onChanged: (value) => _setGender(value ?? _selectedGender),
         isExpanded: true,
         items: const [
-          DropdownMenuItem(value: 'ayol', child: Text('Ayol')),
-          DropdownMenuItem(value: 'erkak', child: Text('Erkak')),
+          DropdownMenuItem(value: 'ayol', child: LocaleText('female')),
+          DropdownMenuItem(value: 'erkak', child: LocaleText('male')),
         ],
       ),
     );

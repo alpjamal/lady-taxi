@@ -15,9 +15,9 @@ class UserInfoModel {
   final String fullName;
   final String gender;
   final String phoneNumber;
-  final String refreshToken;
-  final bool isActive;
-  final String accessToken;
+  final String? refreshToken;
+  final bool? isActive;
+  final String? accessToken;
   final String createdAt;
   final String updatedAt;
 

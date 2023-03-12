@@ -41,3 +41,9 @@ class AuthLoadingState extends AuthState {
   @override
   List<Object?> get props => [];
 }
+
+class CreateProfileErrorState extends AuthState {
+  CreateProfileErrorState();
+  @override
+  List<Object?> get props => [];
+}

@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_locales/flutter_locales.dart';
 import 'package:lady_taxi/ui/screens/history_screen.dart';
 
+import '../../../../data/Models/user_info.dart';
 import '/utils/constants.dart';
 import '../../setting_screen.dart';
 import '../../profile_data_screen.dart';
 
 class UserDrawer extends StatelessWidget {
-  const UserDrawer(this.logout, {super.key});
+  const UserDrawer(this.userInfo, this.logout, {super.key});
+  final UserInfoModel userInfo;
   final Function() logout;
 
   @override
@@ -15,7 +17,7 @@ class UserDrawer extends StatelessWidget {
     return Drawer(
       child: Column(
         children: [
-          _header(),
+          _userInfoHeader(context, userInfo),
           _listTile('profile', Icons.account_circle, () {
             Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => const ProfileDataScreen()));
           }),
@@ -31,7 +33,9 @@ class UserDrawer extends StatelessWidget {
     );
   }
 
-  _header() {
+  _userInfoHeader(ctx, UserInfoModel userInfo) {
+    String name = userInfo.fullName;
+    String phoneNum = _format(userInfo.phoneNumber);
     return Padding(
       padding: const EdgeInsets.only(bottom: 20),
       child: Container(
@@ -57,9 +61,9 @@ class UserDrawer extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  const Text('Madina Aliyeva', style: LTTextStyle.userName),
+                  Text(name, style: LTTextStyle.userName),
                   const SizedBox(height: 5),
-                  const Text('+998 91 123 45 67', style: LTTextStyle.userContact),
+                  Text(phoneNum, style: LTTextStyle.userContact),
                 ],
               ),
             ),
@@ -78,7 +82,7 @@ class UserDrawer extends StatelessWidget {
     list.insert(6, ' ');
     list.insert(10, ' ');
     list.insert(13, ' ');
-    number = '+ ${list.join()}';
+    number = '+${list.join()}';
     return number;
   }
 

@@ -25,8 +25,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<ConfirmOtpEvent>((event, emit) async {
       emit(AuthLoadingState());
       try {
-        final UserInfoModel response =
-            await _repo.confirmOtpCode(phoneNumber: event.phoneNumber, otpCode: event.otpCode);
+        final UserInfoModel response = await _repo.confirmOtpCode(phoneNumber: event.phoneNumber, otpCode: event.otpCode);
         emit(VerifyOtpCodeSuccessState(response));
       } on DioError catch (error) {
         emit(AuthErrorState(error));
@@ -40,7 +39,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(CreateProfileSuccessState(accessToken));
       } on DioError catch (error) {
         emit(AuthErrorState(error));
+      } catch (error) {
+        emit(CreateProfileErrorState());
       }
+    });
+
+    on<LogOutEvent>((event, emit) async {
+      emit(AuthInitialState());
     });
   }
 }

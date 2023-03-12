@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:lady_taxi/data/Models/user_info.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:geolocator/geolocator.dart';
 
@@ -16,7 +17,8 @@ import './home_screen_widgets/panel_address_info.dart';
 import './home_screen_widgets/sign_out_panel.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen(this.userInfo, {super.key});
+  final UserInfoModel userInfo;
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -45,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: UserDrawer(_logOut),
+      drawer: UserDrawer(widget.userInfo, _logOut),
       body: Stack(
         alignment: Alignment.topCenter,
         children: [

@@ -25,3 +25,9 @@ class CreateProfileEvent extends AuthEvent {
   @override
   List<Object?> get props => [];
 }
+
+class LogOutEvent extends AuthEvent {
+  LogOutEvent();
+  @override
+  List<Object?> get props => [];
+}

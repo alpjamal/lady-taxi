@@ -40,5 +40,7 @@
     "cancelled": "Bekor qilindi >",
     "sign_out": "Chiqish",
     "sure": "Nahotki bizni tark etayapsiz?",
-    "cancel": "Bekor qilish"
+    "cancel": "Bekor qilish",
+    "male": "Erkak",
+    "female": "Ayol"
 }

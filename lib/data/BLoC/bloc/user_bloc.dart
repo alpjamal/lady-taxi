@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
-import 'package:lady_taxi/data/Models/active_user_info.dart';
+import 'package:lady_taxi/data/Models/user_info.dart';
 import 'package:lady_taxi/data/Repository/user_repo.dart';
 
 part 'user_event.dart';
@@ -12,7 +12,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
 
   UserBloc() : super(UserInitialState()) {
     on<GetUserEvent>((event, emit) async {
-      emit(UserLoadingState());
+      emit(GetUserLoadingState());
       try {
         final userInfo = await _repo.getUserInfo();
         emit(GetUserSuccessState(userInfo));

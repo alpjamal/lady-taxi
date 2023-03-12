@@ -32,7 +32,7 @@ class AuthRepo {
         headers: {'Authorization': accessToken},
         body: {"full_name": userName, "gender": userGender},
       );
-      return UserInfoModel.fromJson(response.data).accessToken;
+      return UserInfoModel.fromJson(response.data).accessToken!;
     } catch (error) {
       rethrow;
     }
