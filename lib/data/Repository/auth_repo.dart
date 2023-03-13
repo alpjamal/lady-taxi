@@ -24,8 +24,9 @@ class AuthRepo {
     try {
       var prefs = await SharedPreferences.getInstance();
       String userName = prefs.getString(LtPrefs.name)!;
-      String userGender = prefs.getString(LtPrefs.gender)!;
+      String userGender = prefs.getString(LtPrefs.gender) ?? 'ayol';
       String accessToken = prefs.getString(LtPrefs.accessToken)!;
+      if (userName.isEmpty) throw Exception();
 
       final Response response = await ApiRequest().doPostRequest(
         path: '/user/register',
@@ -36,5 +37,13 @@ class AuthRepo {
     } catch (error) {
       rethrow;
     }
+  }
+
+  Future<void> logOut() async {
+    // Cleares user data from device
+    var prefs = await SharedPreferences.getInstance();
+    prefs.remove(LtPrefs.accessToken);
+    prefs.remove(LtPrefs.name);
+    prefs.remove(LtPrefs.gender);
   }
 }

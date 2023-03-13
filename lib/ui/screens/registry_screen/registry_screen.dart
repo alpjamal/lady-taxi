@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -42,7 +44,7 @@ class _RegistryScreenState extends State<RegistryScreen> {
 
   @override
   void dispose() {
-    _timer!.cancel();
+    _timer != null ? _timer!.cancel() : null;
     super.dispose();
   }
 
@@ -131,12 +133,13 @@ class _RegistryScreenState extends State<RegistryScreen> {
         onConfirmPage = true;
       }
     } else if (state is VerifyOtpCodeSuccessState) {
+      var prefs = await SharedPreferences.getInstance();
+      prefs.setString(LtPrefs.accessToken, state.userInfo.accessToken!);
       if (state.userInfo.id.isNotEmpty) {
         Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomeScreen(state.userInfo)));
       } else {
-        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => CreateProfileScreen(userInputNumber)));
-        var prefs = await SharedPreferences.getInstance();
-        prefs.setString(LtPrefs.accessToken, state.userInfo.accessToken!);
+        Navigator.of(context)
+            .pushReplacement(MaterialPageRoute(builder: (context) => CreateProfileScreen(userInputNumber)));
       }
     } else if (state is AuthErrorState) {
       _showErrorSnackbar(message: '${state.error.response?.data['message']}');

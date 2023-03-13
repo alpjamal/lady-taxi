@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_locales/flutter_locales.dart';
-import 'package:lady_taxi/ui/screens/loading_screen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-import '/utils/constants.dart';
+import '/ui/screens/loading_screen.dart';
+import './create_profile_widgest/error_dialog.dart';
 import '/data/BLoC/auth/auth_bloc.dart';
 import '../create_profile_screen/create_profile_widgest/input_field.dart';
 import 'create_profile_widgest/dropdown_menu.dart';
@@ -36,9 +35,7 @@ class CreateProfileScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(top: 20),
                         child: ElevatedButton(
-                          onPressed: () async {
-                            context.read<AuthBloc>().add(CreateProfileEvent());
-                          },
+                          onPressed: () => context.read<AuthBloc>().add(CreateProfileEvent()),
                           child: state is AuthLoadingState
                               ? const CircularProgressIndicator(color: Colors.white)
                               : const LocaleText('continue'),
@@ -55,12 +52,10 @@ class CreateProfileScreen extends StatelessWidget {
     );
   }
 
-  _listener(ctx, state) async {
+  _listener(ctx, state) {
     ScaffoldMessenger.of(ctx).hideCurrentSnackBar();
     if (state is CreateProfileSuccessState) {
       Navigator.of(ctx).pushReplacement(MaterialPageRoute(builder: (context) => const LoadingScreen()));
-      var prefs = await SharedPreferences.getInstance();
-      prefs.setString(LtPrefs.accessToken, state.token);
     } else if (state is AuthErrorState) {
       _showErrorSnackbar(ctx, state.error.message ?? 'Bad Response');
     } else if (state is CreateProfileErrorState) {
@@ -69,9 +64,9 @@ class CreateProfileScreen extends StatelessWidget {
   }
 
   _showErrorSnackbar(ctx, String message) {
-    ScaffoldMessenger.of(ctx).showSnackBar(SnackBar(
-      content: Text(message, style: LTTextStyle.snackErr),
-      behavior: SnackBarBehavior.floating,
-    ));
+    showDialog(
+      context: ctx,
+      builder: (context) => ErrorDialog(message),
+    );
   }
 }

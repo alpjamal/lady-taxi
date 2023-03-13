@@ -45,6 +45,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     });
 
     on<LogOutEvent>((event, emit) async {
+      await _repo.logOut();
       emit(AuthInitialState());
     });
   }

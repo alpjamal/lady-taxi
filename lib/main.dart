@@ -21,8 +21,8 @@ class MyApp extends StatelessWidget {
     return LocaleBuilder(
       builder: (locale) => MultiBlocProvider(
         providers: [
-          BlocProvider(create: (BuildContext context) => AuthBloc()),
-          BlocProvider(create: (context) => UserBloc()..add(GetUserEvent())),
+          BlocProvider(create: (ctx) => AuthBloc()),
+          BlocProvider(create: (ctx) => UserBloc()..add(GetUserEvent())),
         ],
         child: MaterialApp(
           localizationsDelegates: Locales.delegates,

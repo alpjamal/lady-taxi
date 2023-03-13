@@ -4,9 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_locales/flutter_locales.dart';
 import 'package:lady_taxi/data/BLoC/auth/auth_bloc.dart';
-import 'package:lady_taxi/ui/screens/splash_screen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../registry_screen/registry_screen.dart';
 import '/../../utils/constants.dart';
 
 class SignOutPanel extends StatelessWidget {
@@ -16,10 +15,9 @@ class SignOutPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
-      listener: (context, state) async {
+      listener: (context, state) {
         if (state is AuthInitialState) {
-          Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => const LadyTaxiSplashScreen()));
-          await _clearPrefs();
+          Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => const RegistryScreen()));
         }
       },
       child: BackdropFilter(
@@ -51,8 +49,8 @@ class SignOutPanel extends StatelessWidget {
                     Expanded(
                       child: ElevatedButton(
                         onPressed: () {
-                          context.read<AuthBloc>().add(LogOutEvent());
                           Navigator.pop(context);
+                          context.read<AuthBloc>().add(LogOutEvent());
                         },
                         child: const LocaleText('continue'),
                       ),
@@ -65,13 +63,5 @@ class SignOutPanel extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  _clearPrefs() async {
-    // Cleares user data from device
-    var prefs = await SharedPreferences.getInstance();
-    prefs.remove(LtPrefs.accessToken);
-    prefs.remove(LtPrefs.name);
-    prefs.remove(LtPrefs.gender);
   }
 }

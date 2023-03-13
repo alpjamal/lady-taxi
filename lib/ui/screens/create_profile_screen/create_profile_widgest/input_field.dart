@@ -10,15 +10,13 @@ class InputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String name = '';
     return Padding(
       padding: const EdgeInsets.only(top: 20),
       child: TextFormField(
         style: LTTextStyle.defaultStyle,
         decoration: InputDecoration(hintText: hintText),
         enabled: enabled,
-        onEditingComplete: () => _setName(name),
-        onChanged: (value) => name = value,
+        onChanged: (value) => _setName(value),
       ),
     );
   }

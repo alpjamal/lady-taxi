@@ -6,15 +6,18 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../utils/constants.dart';
 
 class UserRepo {
-  Future<UserInfoModel> getUserInfo() async {
+  Future<UserInfoModel?> getUserInfo() async {
     try {
       var prefs = await SharedPreferences.getInstance();
-      String accessToken = prefs.getString(LtPrefs.accessToken)!;
-      final Response response = await ApiRequest().doGetRequest(
-        path: '/user',
-        headers: {'Authorization': accessToken},
-      );
-      return UserInfoModel.fromJson(response.data);
+      String? accessToken = prefs.getString(LtPrefs.accessToken);
+      if (accessToken != null) {
+        final Response response = await ApiRequest().doGetRequest(
+          path: '/user',
+          headers: {'Authorization': accessToken},
+        );
+        return UserInfoModel.fromJson(response.data);
+      }
+      return null;
     } catch (error) {
       rethrow;
     }

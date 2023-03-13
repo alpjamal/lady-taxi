@@ -15,7 +15,11 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       emit(GetUserLoadingState());
       try {
         final userInfo = await _repo.getUserInfo();
-        emit(GetUserSuccessState(userInfo));
+         if (userInfo != null) {
+          emit(GetUserSuccessState(userInfo));
+        } else {
+          emit(UserInitialState());
+        }
       } on DioError catch (error) {
         emit(GetUserErrorState(error));
       }

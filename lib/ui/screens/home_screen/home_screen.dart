@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:lady_taxi/data/Models/user_info.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:geolocator/geolocator.dart';
 
@@ -112,14 +113,17 @@ class _HomeScreenState extends State<HomeScreen> {
     return AddressInfoPanel(func: () => _togglePanel(LTPanelHeight.location));
   }
 
-  _showDialog(ctx) {
-    showDialog(
-      context: ctx,
-      builder: (ctx) {
-        _timer = Timer(LTDuration.alertDuration, () => Navigator.of(context).pop());
-        return const CongratulationDialog();
-      },
-    ).then((val) => _timer!.cancel());
+  _showDialog(ctx) async {
+    var prefs = await SharedPreferences.getInstance();
+    if (prefs.getString(LtPrefs.name) != null) {
+      showDialog(
+        context: ctx,
+        builder: (ctx) {
+          _timer = Timer(LTDuration.alertDuration, () => Navigator.of(context).pop());
+          return const CongratulationDialog();
+        },
+      ).then((val) => _timer!.cancel());
+    }
   }
 
   _logOut() {
