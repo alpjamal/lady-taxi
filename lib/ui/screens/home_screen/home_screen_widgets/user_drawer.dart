@@ -19,7 +19,7 @@ class UserDrawer extends StatelessWidget {
         children: [
           _userInfoHeader(context, userInfo),
           _listTile('profile', Icons.account_circle, () {
-            Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => const ProfileDataScreen()));
+            Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => ProfileDataScreen(userInfo)));
           }),
           _listTile('history', Icons.history, () {
             Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => const HistoryScreen()));

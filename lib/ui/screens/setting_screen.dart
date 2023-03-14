@@ -24,35 +24,48 @@ class _SettingsScreenState extends State<SettingsScreen> {
         child: Column(
           children: [
             const SizedBox(height: 20),
-            _buildField(
-                'notifications',
-                Switch(
-                    activeColor: LTColors.primary,
-                    value: _notification,
-                    onChanged: (value) => setState(() => _notification = value))),
-            _buildField('security', const Icon(Icons.arrow_forward_ios)),
-            _buildField('language', const Icon(Icons.arrow_forward_ios)),
-            _buildField(
-                'night_mode',
-                Switch(
-                    activeColor: LTColors.primary,
-                    value: _darkMode,
-                    onChanged: (value) => setState(() => _darkMode = value))),
+            _settingCard(
+              title: 'notifications',
+              child: Container(
+                color: Colors.amber,
+                padding: EdgeInsets.zero,
+                child: Switch(
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  activeColor: LTColors.primary,
+                  value: _notification,
+                  onChanged: (value) => setState(() => _notification = value),
+                ),
+              ),
+            ),
+            _settingCard(title: 'security', child: const Icon(Icons.arrow_forward_ios)),
+            _settingCard(title: 'language', child: const Icon(Icons.arrow_forward_ios)),
+            _settingCard(
+              title: 'night_mode',
+              child: Switch(
+                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                activeColor: LTColors.primary,
+                value: _darkMode,
+                onChanged: (value) => setState(() => _darkMode = value),
+              ),
+            ),
           ],
         ),
       ),
     );
   }
 
-  _buildField(String hintText, Widget item) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 20),
-      child: TextField(
-        decoration: InputDecoration(
-          hintText: context.localeString(hintText),
-          hintStyle: LTTextStyle.defaultStyle,
-          suffixIcon: item,
-        ),
+  Widget _settingCard({required String title, required Widget child}) {
+    return Container(
+      padding: const EdgeInsets.only(left: 15, top: 10, bottom: 10, right: 10),
+      margin: const EdgeInsets.only(bottom: 20),
+      width: double.infinity,
+      decoration: const BoxDecoration(color: LTColors.inputFill, borderRadius: BorderRadius.all(LTRadius.input)),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          LocaleText(title, style: LTTextStyle.defaultStyle),
+          child,
+        ],
       ),
     );
   }

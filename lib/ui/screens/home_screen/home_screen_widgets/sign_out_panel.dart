@@ -9,8 +9,7 @@ import '../../registry_screen/registry_screen.dart';
 import '/../../utils/constants.dart';
 
 class SignOutPanel extends StatelessWidget {
-  const SignOutPanel({super.key, required this.context});
-  final BuildContext context;
+  const SignOutPanel({super.key});
 
   @override
   Widget build(BuildContext context) {

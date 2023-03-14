@@ -9,6 +9,8 @@ class UserInfoModel {
     required this.accessToken,
     required this.createdAt,
     required this.updatedAt,
+    required this.email,
+    required this.birthDate,
   });
 
   final String id;
@@ -20,6 +22,8 @@ class UserInfoModel {
   final String? accessToken;
   final String createdAt;
   final String updatedAt;
+  final String? email;
+  final DateTime? birthDate;
 
   factory UserInfoModel.fromJson(Map<String, dynamic> json) {
     return UserInfoModel(
@@ -32,6 +36,8 @@ class UserInfoModel {
       accessToken: json["access_token"],
       createdAt: json["created_at"],
       updatedAt: json["updated_at"],
+      email: json["email"],
+      birthDate: json["birth_date"],
     );
   }
 }

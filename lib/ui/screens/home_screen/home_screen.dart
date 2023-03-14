@@ -131,7 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
     showModalBottomSheet(
       backgroundColor: Colors.transparent,
       context: context,
-      builder: (ctx) => SignOutPanel(context: context),
+      builder: (ctx) => const SignOutPanel(),
     );
   }
 }

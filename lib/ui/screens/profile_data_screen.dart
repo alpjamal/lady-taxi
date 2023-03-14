@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_locales/flutter_locales.dart';
+import 'package:lady_taxi/data/Models/user_info.dart';
 import 'package:lady_taxi/utils/constants.dart';
 
 class ProfileDataScreen extends StatelessWidget {
-  const ProfileDataScreen({super.key});
+  const ProfileDataScreen(this.userInfo, {super.key});
+  final UserInfoModel userInfo;
 
   @override
   Widget build(BuildContext context) {
@@ -16,11 +18,15 @@ class ProfileDataScreen extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 20),
-            _buildField('Madina Aliyeva', Icons.edit),
-            _buildField('+998 91 123 45 67', Icons.phone),
+            _buildField(userInfo.fullName, Icons.edit),
+            _buildField(userInfo.phoneNumber, Icons.phone),
             _buildField('12/27/1998', Icons.calendar_month),
-            _buildField('madina@example.com', Icons.mail_outline),
-            ElevatedButton(onPressed: () => Navigator.of(context).pop(), child: const LocaleText('save'))
+            _buildField('something@example.com', Icons.mail_outline),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const LocaleText('save'))
           ],
         ),
       ),
