@@ -115,7 +115,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   _showDialog(ctx) async {
     var prefs = await SharedPreferences.getInstance();
-    if (prefs.getString(LtPrefs.name) != null) {
+    if (prefs.getBool(LtPrefs.isOpened) == false) {
+      prefs.setBool(LtPrefs.isOpened, true);
       showDialog(
         context: ctx,
         builder: (ctx) {
