@@ -88,6 +88,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   Future _setData() async {
     var prefs = await SharedPreferences.getInstance();
-    prefs.setBool('isInitial', false);
+    prefs.setBool(LtPrefs.isInitial, false);
   }
 }

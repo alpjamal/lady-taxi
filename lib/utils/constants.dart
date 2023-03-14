@@ -88,4 +88,6 @@ class LtPrefs {
   static const String name = 'name';
   static const String gender = 'gender';
   static const String accessToken = 'access_token';
+  static const String isOpened = 'alert_dialog';
+  static const String isInitial = 'isIinital';
 }

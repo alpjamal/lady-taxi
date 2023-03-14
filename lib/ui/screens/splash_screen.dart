@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:easy_splash_screen/easy_splash_screen.dart';
 import 'package:lady_taxi/ui/screens/loading_screen.dart';
+import 'package:lady_taxi/utils/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'onboarding_screen/onboarding_screen.dart';
@@ -10,7 +11,7 @@ class LadyTaxiSplashScreen extends StatelessWidget {
 
   Future<bool?> _getData() async {
     var prefs = await SharedPreferences.getInstance();
-    return prefs.getBool('isInitial');
+    return prefs.getBool(LtPrefs.isInitial);
   }
 
   @override

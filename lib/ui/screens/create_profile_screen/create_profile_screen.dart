@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_locales/flutter_locales.dart';
+import 'package:lady_taxi/data/BLoC/bloc/user_bloc.dart';
 
 import '/ui/screens/loading_screen.dart';
 import './create_profile_widgest/error_dialog.dart';
@@ -55,6 +56,7 @@ class CreateProfileScreen extends StatelessWidget {
   _listener(ctx, state) {
     ScaffoldMessenger.of(ctx).hideCurrentSnackBar();
     if (state is CreateProfileSuccessState) {
+      BlocProvider.of<UserBloc>(ctx).add(GetUserEvent());
       Navigator.of(ctx).pushReplacement(MaterialPageRoute(builder: (context) => const LoadingScreen()));
     } else if (state is AuthErrorState) {
       _showErrorSnackbar(ctx, state.error.message ?? 'Bad Response');

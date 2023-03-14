@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_locales/flutter_locales.dart';
 import 'package:lady_taxi/ui/screens/home_screen/home_screen.dart';
 import 'package:otp_text_field/otp_text_field.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '/../data/BLoC/auth/auth_bloc.dart';
 import '/utils/constants.dart';
@@ -133,8 +132,6 @@ class _RegistryScreenState extends State<RegistryScreen> {
         onConfirmPage = true;
       }
     } else if (state is VerifyOtpCodeSuccessState) {
-      var prefs = await SharedPreferences.getInstance();
-      prefs.setString(LtPrefs.accessToken, state.userInfo.accessToken!);
       if (state.userInfo.id.isNotEmpty) {
         Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomeScreen(state.userInfo)));
       } else {
