@@ -91,4 +91,5 @@ class LtPrefs {
   static const String accessToken = 'access_token';
   static const String isOpened = 'alert_dialog';
   static const String isInitial = 'isIinital';
+  static const String isThemeDark = 'isThemeDark';
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_locales/flutter_locales.dart';
-import 'package:lady_taxi/data/cubit/theme_cubit.dart';
+import 'package:lady_taxi/data/cubit/theme_cubit/theme_cubit.dart';
 import 'package:lady_taxi/utils/constants.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -36,7 +36,7 @@ class SettingsScreen extends StatelessWidget {
               child: Switch(
                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 activeColor: LTColors.primary,
-                value: theme.isdark,
+                value: theme.isDark,
                 onChanged: (value) => theme.changeTheme(),
               ),
             ),

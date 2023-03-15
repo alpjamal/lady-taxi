@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import './constants.dart';
 
 class LadyTaxiTheme {
-  final themeData = ThemeData(
+  static final light = ThemeData(
     primaryColor: LTColors.primary,
     appBarTheme: const AppBarTheme(
       toolbarHeight: 80,
@@ -52,9 +52,8 @@ class LadyTaxiTheme {
     ),
   );
 
-  static const Color sec = LTColors.primary;
-  final themeData1 = ThemeData(
-    primaryColor: sec,
+  static final dark = ThemeData(
+    primaryColor: LTColors.primary,
     scaffoldBackgroundColor: Colors.grey.shade900,
     drawerTheme: DrawerThemeData(backgroundColor: Colors.grey.shade900),
     appBarTheme: const AppBarTheme(
@@ -65,14 +64,14 @@ class LadyTaxiTheme {
     ),
     textButtonTheme: const TextButtonThemeData(
       style: ButtonStyle(
-        iconColor: MaterialStatePropertyAll<Color>(sec),
+        iconColor: MaterialStatePropertyAll<Color>(LTColors.primary),
       ),
     ),
     fontFamily: 'Roboto',
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         disabledBackgroundColor: LTColors.primaryWithOpacity10,
-        backgroundColor: sec,
+        backgroundColor: LTColors.primary,
         elevation: 0,
         textStyle: LTTextStyle.defaultStyle,
         minimumSize: const Size.fromHeight(50),
@@ -98,7 +97,7 @@ class LadyTaxiTheme {
     ),
     snackBarTheme: SnackBarThemeData(
       behavior: SnackBarBehavior.floating,
-      backgroundColor: sec,
+      backgroundColor: LTColors.primary,
       showCloseIcon: true,
       closeIconColor: Colors.grey.shade900,
       shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(LTRadius.snackBar)),
