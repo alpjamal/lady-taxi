@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lady_taxi/data/BLoC/bloc/user_bloc.dart';
+import 'package:lady_taxi/data/BLoC/user/user_bloc.dart';
 
 import '/ui/screens/home_screen/home_screen.dart';
 import '/../utils/constants.dart';

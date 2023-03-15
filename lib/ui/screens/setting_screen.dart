@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_locales/flutter_locales.dart';
+import 'package:lady_taxi/data/cubit/theme_cubit.dart';
 import 'package:lady_taxi/utils/constants.dart';
 
-class SettingsScreen extends StatefulWidget {
+class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 
   @override
-  State<SettingsScreen> createState() => _SettingsScreenState();
-}
-
-class _SettingsScreenState extends State<SettingsScreen> {
-  bool _notification = false;
-  bool _darkMode = false;
-
-  @override
   Widget build(BuildContext context) {
+    bool notification = false;
+    ThemeCubit theme = BlocProvider.of<ThemeCubit>(context, listen: true);
     return Scaffold(
       appBar: AppBar(
         title: const LocaleText('settings'),
@@ -26,15 +22,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
             const SizedBox(height: 20),
             _settingCard(
               title: 'notifications',
-              child: Container(
-                color: Colors.amber,
-                padding: EdgeInsets.zero,
-                child: Switch(
-                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  activeColor: LTColors.primary,
-                  value: _notification,
-                  onChanged: (value) => setState(() => _notification = value),
-                ),
+              child: Switch(
+                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                activeColor: LTColors.primary,
+                value: notification,
+                onChanged: (value) => notification = value,
               ),
             ),
             _settingCard(title: 'security', child: const Icon(Icons.arrow_forward_ios)),
@@ -44,8 +36,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
               child: Switch(
                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 activeColor: LTColors.primary,
-                value: _darkMode,
-                onChanged: (value) => setState(() => _darkMode = value),
+                value: theme.isdark,
+                onChanged: (value) => theme.changeTheme(),
               ),
             ),
           ],
@@ -56,6 +48,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   Widget _settingCard({required String title, required Widget child}) {
     return Container(
+      height: 50,
       padding: const EdgeInsets.only(left: 15, top: 10, bottom: 10, right: 10),
       margin: const EdgeInsets.only(bottom: 20),
       width: double.infinity,

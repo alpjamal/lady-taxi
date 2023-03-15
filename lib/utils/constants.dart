@@ -13,6 +13,7 @@ class LTColors {
 
 class LTTextStyle {
   static const appbarStyle = TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w600);
+  static const darkAppbarStyle = TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.w600);
   static const defaultStyle = TextStyle(fontSize: 16, color: Colors.black);
   static const defaultStyleRed = TextStyle(fontSize: 16, color: LTColors.primary);
   static const defaultStyleRedBold = TextStyle(fontSize: 16, color: LTColors.primary, fontWeight: FontWeight.bold);
