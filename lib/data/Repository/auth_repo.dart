@@ -57,5 +57,6 @@ class AuthRepo {
     prefs.remove(LtPrefs.accessToken);
     prefs.remove(LtPrefs.name);
     prefs.remove(LtPrefs.gender);
+    prefs.remove(LtPrefs.isThemeDark);
   }
 }

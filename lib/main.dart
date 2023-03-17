@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_locales/flutter_locales.dart';
 import 'package:lady_taxi/data/BLoC/user/user_bloc.dart';
+import 'package:lady_taxi/data/cubit/onboarding_page_cubit/onboarding_page_cubit.dart';
 import 'package:lady_taxi/data/cubit/theme_cubit/theme_cubit.dart';
 import 'package:lady_taxi/utils/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -20,8 +21,9 @@ void main() async {
     MultiBlocProvider(
       providers: [
         BlocProvider(create: (ctx) => UserBloc()..add(GetUserEvent())),
-        BlocProvider(create: (context) => ThemeCubit()..getTheme(isDark)),
+        BlocProvider(create: (context) => ThemeCubit()..setTheme(isDark)),
         BlocProvider(create: (ctx) => AuthBloc()),
+        BlocProvider(create: (ctx) => OnboardingPageCubit()),
       ],
       child: const MyApp(),
     ),
