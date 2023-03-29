@@ -22,7 +22,7 @@ class SettingsScreen extends StatelessWidget {
             const SizedBox(height: 20),
             _settingCard(
               title: 'notifications',
-              child: Switch(
+              child: Switch.adaptive(
                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 activeColor: LTColors.primary,
                 value: notification,
@@ -33,7 +33,7 @@ class SettingsScreen extends StatelessWidget {
             _settingCard(title: 'language', child: const Icon(Icons.arrow_forward_ios)),
             _settingCard(
               title: 'night_mode',
-              child: Switch(
+              child: Switch.adaptive(
                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 activeColor: LTColors.primary,
                 value: theme.isDark,
